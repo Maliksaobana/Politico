@@ -16,3 +16,6 @@
     <li> Users can vote for only one politician per ​political office</li>
     <li> Users can see the results of election.</li> 
 </ul>
+
+
+The project was tracked using **TRELLO**. <a href='https://trello.com/invite/b/6a39c25c680e926c690727e6/ATTI77ef082cccbcd99cb23346a863a12e43E72B1A7E/my-trello-board'>View Trello Tracker</a>

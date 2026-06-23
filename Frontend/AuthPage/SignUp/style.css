@@ -1,0 +1,33 @@
+:root {
+    --padding-primary: min(2em, 80%);
+    --header-text: clamp(1.5rem, 3vw, 3rem);
+    --subheader-text: clamp(.9rem, 2vw, 1.1rem);
+    /* for color combination */
+    --color-colorOne: #121358;
+    --color-colorTwo: #232f72;
+    --color-colorThree: #abdaf7;
+    --color-colorFour: #0c2725;
+    /* color-scheme: light dark; */
+    interpolate-size: allow-keywords;
+    font-family: "DM Sans", "AlumniSans" , sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2,
+h3, h4,
+h5, h6{
+    font-family: "AlumniSans" , sans-serif;
+}
+p,li,a,i,button {
+    font-family: "DM Sans", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
