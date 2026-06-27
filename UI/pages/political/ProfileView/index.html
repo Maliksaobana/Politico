@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- font-awesome icons --->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts --->
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <title>Profile</title>
+</head>
+<body>
+    <main class="dash_wrapper">
+        <aside class="dashboard_menu">
+            <button class="menu_close">
+                <i class="fa-solid fa-close"></i>
+            </button>
+            <header class="header_item">
+                <div class="header_logo">
+                    <span>use</span>
+                </div>
+                <div class="header_info">
+                    <h2>username</h2>
+                    <h3>party name</h3>
+                    <h4>position</h4>
+                    <h5>number of followers</h5>
+                </div>
+            </header>
+            <nav>
+                <div class="list_nav">
+                    <ul>
+                        <li><span><i class="fa-solid fa-home"></i></span><a href="../index.html">Home</a></li>
+                        <li><span><i class="fa-solid fa-handshake"></i></span><a href="../FeedView/index.html">Party Feed</a></li>
+                        <li><span><i class="fa-solid fa-landmark-flag"></i></span><a href="../CreateParty/index.html">Party</a></li>
+                        <li class="only_admin"><span><i class="fa-solid fa-flag"></i></span><a href="../CampaignView/index.html">Campaign</a></li>
+                        <li><span><i class="fa-solid fa-check-to-slot"></i></span><a href="../VoteView/index.html">Vote</a></li>
+                        <li class="active"><span><i class="fa-regular fa-circle-user"></i></span><a href="../ProfileView/index.html">Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="sign_out">
+                    <button class="log_out">
+                        <span>
+                            <i class="fa-solid fa-door-open"></i>
+                        </span>
+                        Log out</button>
+            </div>
+        </aside>
+        <section class="display_main">
+            <div class="display_header">
+                <div class="display_logo">
+                    <h1>Profile</h1>
+                </div>
+                <button class="menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- content goes here -->
+
+            <main class="profile_wrapper">
+                <form>
+                    <div class="profile_info">
+                        <div class="profile_form_header">
+                            <div class="profile_img">
+                                <span>ad</span>
+                            </div>
+                        </div>
+                        <div class="profile_form_info">
+                            <div class="user_input">
+                                <h5>username</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field">username</h1>
+                                    </div>
+                                    <button class="edit_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>party name</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field">party name</h1>
+                                    </div>
+                                    <button class="edit_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>slogan</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field">we rise and fall together</h1>
+                                    </div>
+                                    <button class="edit_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>motto</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field"></h1>
+                                    </div>
+                                    <button class="textarea_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile_save_btn">
+                            <button>save</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="history">
+                    <div class="history_header">
+                        <h4>Position Held History</h4>
+                    </div>
+                    <div class="history_table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>s/n</th>
+                                    <th>duration</th>
+                                    <th>political position</th>
+                                    <th>aspirants</th>
+                                    <th>remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>4 years</td>
+                                    <td>min of trouble</td>
+                                    <td>Mr asoba wike</td>
+                                    <td>did well</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="history">
+                    <div class="history_header">
+                        <h4>Vote History</h4>
+                    </div>
+                    <div class="history_table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>s/n</th>
+                                    <th>date</th>
+                                    <th>political position</th>
+                                    <th>aspirants</th>
+                                    <th>party</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>24/5/2026</td>
+                                    <td>min of trouble</td>
+                                    <td>Mr asoba wike</td>
+                                    <td>PDP</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </section>
+        <article class="news-article">
+
+        </article>
+    </main>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>

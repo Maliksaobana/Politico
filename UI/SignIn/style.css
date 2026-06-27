@@ -1,0 +1,193 @@
+:root {
+    --padding-primary: min(2em, 80%);
+    --header-text: clamp(1.5rem, 3vw, 3rem);
+    --subheader-text: clamp(.9rem, 2vw, 1.1rem);
+    /* for color combination */
+    --color-colorOne: #121358;
+    --color-colorTwo: #232f72;
+    --color-colorThree: #abdaf7;
+    --color-colorFour: #0c2725;
+    /* color-scheme: light dark; */
+    interpolate-size: allow-keywords;
+    font-family: "DM Sans", "AlumniSans" , sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2,
+h3, h4,
+h5, h6{
+    font-family: "AlumniSans" , sans-serif;
+}
+p,li,a,i,button,input {
+    font-family: "DM Sans", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin_wrapper {
+    width: 100%;
+    max-width: 500px;
+    padding-inline: var(--padding-primary);
+    padding-block: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0px 16px rgba(120,200,170,.5);
+}
+
+.form_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.form_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    gap: .5rem;
+}
+.form_logo p {
+    font-size: 14px;
+    text-align: center;
+}
+
+.form_data {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .8rem;
+}
+.form_input {
+    width: 100%;
+}
+.form_input h5 {
+    margin-bottom: .4rem;
+    text-transform: capitalize;
+    font-size: .9rem;
+}
+
+.input_field {
+    border: 1px solid;
+    padding: .8rem;
+    border-radius: 5px;
+}
+
+.input_field input {
+    border: none;
+    font-size: .9rem;
+    width: 100%;
+    outline: none;
+}
+.input_field input::placeholder {
+    text-transform: capitalize;
+}
+
+.info {
+    margin-block-start: .4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        transition: color .2s;
+        font-size: .8rem;
+
+        &:hover {
+            color: var(--color-colorFour);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+    }
+}
+.info label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    span {
+        font-size: .8rem;
+    }
+
+    input {
+        accent-color: var(--color-colorThree);
+        cursor: pointer;
+    }
+}
+
+.form_btn {
+    margin-block: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_btn button {
+    display: flex;
+    padding: .5px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    height: 40px;
+    font-size: .9rem;
+    font-weight: bold;
+    border-radius: 4rem;
+    outline: none;
+    border: none;
+    background: var(--color-colorFour);
+    color: var(--color-colorThree);
+    cursor: pointer;
+
+    &:hover {
+        outline: 1px solid;
+        outline-offset: 2px;
+        outline-color: var(--color-colorFour);
+    }
+}
+
+.form_remark {
+    margin-bottom: .8rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    h4 {
+        font-size: clamp(.8rem,2vw,.9rem);
+        text-align: pretty;
+    }
+}
+
+.sign_in_remark {
+    display: flex;
+    justify-content: center;
+    margin-bottom: .8rem;
+}
+
+.sign_in_remark p {
+    font-size: .9rem;
+}
+
+.sign_in_remark p span a {
+    &:hover {
+        color: var(--color-colorFour);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+}
