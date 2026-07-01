@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- font-awesome icons --->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts --->
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+<body>
+    <main class="dash_wrapper">
+        <aside class="dashboard_menu">
+            <button class="menu_close">
+                <i class="fa-solid fa-close"></i>
+            </button>
+            <header class="header_item">
+                <div class="header_logo">
+                    <span>use</span>
+                </div>
+                <div class="header_info">
+                    <h2>username</h2>
+                    <h3>party name</h3>
+                </div>
+            </header>
+            <nav>
+                <div class="list_nav">
+                    <ul>
+                        <li class="active"><span><i class="fa-solid fa-home"></i></span><a href="./index.html" target="_parent" rel="no-referrer" rel="no-opener">Home</a></li>
+                        <!-- <li><span><i class="fa-solid fa-handshake"></i></span><a href="./FeedView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Party Feed</a></li> -->
+                        <li><span><i class="fa-solid fa-landmark-flag"></i></span><a href="./Party/index.html" target="_parent" rel="no-referrer" rel="no-opener">Party</a></li>
+                        
+                        <li><span><i class="fa-solid fa-check-to-slot"></i></span><a href="./VoteView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Vote</a></li>
+                        <li><span><i class="fa-regular fa-circle-user"></i></span><a href="./ProfileView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="sign_out">
+                    <button class="log_out">
+                        <span>
+                            <i class="fa-solid fa-door-open"></i>
+                        </span>
+                        Log out</button>
+            </div>
+        </aside>
+        <section class="display_main">
+            <div class="display_header">
+                <div class="display_logo">
+                    <h1>Politico</h1>
+                </div>
+                <button class="menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </section>
+        <article class="news-article">
+
+        </article>
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

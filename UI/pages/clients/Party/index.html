@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- font-awesome icons --->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts --->
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <title>Party</title>
+</head>
+<body>
+
+    <main class="dash_wrapper">
+        <aside class="dashboard_menu">
+            <button class="menu_close">
+                <i class="fa-solid fa-close"></i>
+            </button>
+            <header class="header_item">
+                <div class="header_logo">
+                    <span>use</span>
+                </div>
+                <div class="header_info">
+                    <h2>username</h2>
+                    <h3>party name</h3>
+                </div>
+            </header>
+            <nav>
+                <div class="list_nav">
+                    <ul>
+                        <li><span><i class="fa-solid fa-home"></i></span><a href="../index.html" target="_parent" rel="no-referrer" rel="no-opener">Home</a></li>
+                        <!-- <li><span><i class="fa-solid fa-handshake"></i></span><a href="./FeedView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Party Feed</a></li> -->
+                        <li class="active"><span><i class="fa-solid fa-landmark-flag"></i></span><a href="./index.html" target="_parent" rel="no-referrer" rel="no-opener">Party</a></li>
+                        
+                        <li><span><i class="fa-solid fa-check-to-slot"></i></span><a href="../VoteView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Vote</a></li>
+                        <li><span><i class="fa-regular fa-circle-user"></i></span><a href="../ProfileView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="sign_out">
+                    <button class="log_out">
+                        <span>
+                            <i class="fa-solid fa-door-open"></i>
+                        </span>
+                        Log out</button>
+            </div>
+        </aside>
+        <section class="display_main">
+            <div class="display_header">
+                <div class="display_logo">
+                    <h1>Party</h1>
+                </div>
+                <button class="menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <section class="list_of_party active">
+                <div class="party_items">
+                    <div class="create_party_btn">
+                        <div class="page_info">
+                            <h2>List of Political Parties</h2>
+                        </div>
+                        <button><a href="../CreateParty/index.html" target="_parent" rel="no-referrer" rel="no-opener">create party</a></button>
+                    </div>
+                    <div class="party_lists">
+                        <div class="party_card">
+                            <div class="party_card_info">
+                                <div class="party_abt">
+                                    <div class="party_card_img">
+                                        <span>pdp</span>
+                                    </div>
+                                    <div class="party_name">
+                                        <h3><a href="">name of party</a></h3>
+                                        <h4><a href="">creator name</a></h4>
+                                        <p><span>current</span> • members</p>
+                                    </div>
+                                </div>
+                                <div class="party_motto">
+                                    <h2>i want to cause trouble without ceasing or end in sight</h2>
+                                </div>
+                            </div>
+                            <div class="call_to_action">
+                                <button class="join"><a>join</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <main class="profile_wrapper">
+                <div class="profile_info">
+                    <div class="profile_form_header">
+                            <div class="profile_img">
+                                <span>pdp</span>
+                            </div>
+                            <div class="admin_info">
+                                <h1>username</h1>
+                                <h2>member since</h2>
+                            </div>
+                    </div>
+                    <div class="profile_form_info">
+                        <div class="user_input">
+                            <h5>party name</h5>
+                            <div class="client_mode">
+                                <p>name of party</p>
+                            </div>
+                        </div>
+                         <div class="user_input">
+                            <h5>party Leader</h5>
+                            <div class="client_mode">
+                                <p>party Leader</p>
+                            </div>
+                        </div>
+                        <div class="user_input">
+                            <h5>party acronym</h5>
+                            <div class="client_mode">
+                                <p>party acronym</p>
+                            </div>
+                        </div>
+                        <div class="user_input">
+                            <h5>slogan</h5>
+                            <div class="client_mode">
+                                <p>party acronym</p>
+                            </div>
+                        </div>
+                        <div class="user_input">
+                            <h5>motto</h5>
+                            <div class="client_mode">
+                                <p>party motto</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="abt_info">
+                        <h2>members</h2>
+                        <div class="abt_political_members">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>s/n</th>
+                                        <th>members</th>
+                                        <th>office</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <div class="party_table">
+                                                <div class="party_img">
+                                                    <span>pdp</span>
+                                                </div>
+                                                <div class="party_info">
+                                                    <h2><a href="">member name</a></h2>
+                                                    <h3>position</h3>
+                                                    <p>duration</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>president</td>
+                                    </tr>                     
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="profile_save_btn">
+                        <button class="leave_party_btn">
+                            <i class="fa-solid fa-door-open"></i>
+                            leave party
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </section>
+    </main>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>
