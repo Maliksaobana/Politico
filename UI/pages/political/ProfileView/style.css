@@ -418,7 +418,8 @@ body{
     text-transform: capitalize;
 }
 .edit_icon,
-.textarea_icon {
+.admin_edit_icon,
+.area_icon {
     border: none;
     background: none;
     width: fit-content;
@@ -427,7 +428,8 @@ body{
     border-radius: 50%;
 }
 .edit_icon i,
-.textarea_icon i {
+.admin_edit_icon i,
+.area_icon i {
     background: var(--color-colorFour);
     color: var(--color-colorThree);
     width: 32px;
@@ -509,4 +511,14 @@ tbody tr td {
     padding: .3rem;
     text-transform: capitalize;
     font-size: .9rem;
+}
+
+.admin_edit_icon,
+.area_icon {
+    display: none;
+}
+
+.admin_edit_icon.isAdmin,
+.area_icon.isAdmin {
+    display: block;
 }

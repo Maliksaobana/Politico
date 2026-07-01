@@ -6,9 +6,10 @@ closeMenuBtn.addEventListener('click', closeMenu)
 
 
 
-const editButtons = document.querySelectorAll('.edit_icon')
+const editButtons = document.querySelectorAll('.admin_edit_icon')
 
-const textAreaBtn = document.querySelector(".textarea_icon")
+const textAreaBtn = document.querySelector(".area_icon")
+const profileEditBtn = document.querySelector(".edit_icon")
 
 export const convertToInput = (e) => {
     let value = e.target.parentElement.previousElementSibling.firstElementChild.textContent
@@ -90,3 +91,12 @@ export const editTextarea = (e) =>{
 }
 
 textAreaBtn.addEventListener('click', (e) => editTextarea(e))
+profileEditBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    if(e.target.getAttribute('class') === 'fa-solid fa-pencil') {
+        convertToInput(e)
+    }else {
+        convertToH_One(e)
+    }
+})

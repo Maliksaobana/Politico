@@ -450,8 +450,8 @@ body{
     gap: .5rem;
 }
 
-.call_to_action .vote,
-.call_to_action .petition {
+.call_to_action .vote_btn,
+.call_to_action .petition_btn {
     font-size: 1rem;
     font-weight: bold;
     text-transform: capitalize;
@@ -481,5 +481,11 @@ body{
     }
     .vote_card {
         width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .call_to_action {
+        flex-wrap: wrap;
     }
 }

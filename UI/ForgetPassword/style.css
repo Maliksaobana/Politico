@@ -38,6 +38,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
 .forget_wrapper {
@@ -173,4 +175,59 @@ body {
         font-size: clamp(.8rem,2vw,.9rem);
         text-align: pretty;
     }
+}
+
+
+.errModal {
+    border-radius: 8px;
+    padding: 8px 10px;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-colorFour);
+    position: absolute;
+    top: 30px;
+    right: -80000px;
+    overflow: hidden;
+    transition: right .5s ease;
+
+    h1 {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    span{
+        position: absolute;
+        width: 100%;
+        background: red;
+        height: 4px;
+        bottom: 0;
+        left: 0;
+        
+    }
+}
+
+@keyframes popUpWidth {
+    to {
+        width: 0;
+    }
+}
+
+
+.errModal.show {
+    right: 8px;
+    transition: right .8s ease;
+    span {
+        animation: popUpWidth 6s linear;
+    }
+}
+
+.input_field.err {
+    border-color: #f00;
+}
+.input_field.good {
+    border-color: rgb(12, 223, 16);
 }
