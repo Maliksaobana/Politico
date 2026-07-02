@@ -12,7 +12,7 @@ const router = require('express').Router()
 
 router.post('/signin',signInUser)
 
-router.patch('/profile/edit/:id', protect, editClientProfile)
+router.patch('/profile/edit', protect, editClientProfile)
 
 router.get('/profile', protect, getUserProfile)
 

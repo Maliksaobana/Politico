@@ -27,8 +27,9 @@ const errorMessages = {
 }
 
 
-const getUserId = (userId) => jwt.sign({id: userId}, process.env.JWT_SECRET, {expiresIn: '2d'})
+let check;
 
+const getUserId = (userId) => jwt.sign({id: userId}, process.env.JWT_SECRET, {expiresIn: '2d'})
 
 
 // signup new user
@@ -68,7 +69,7 @@ const signUpUser = async (req,res) => {
                 name: newUser.name,
                 role: newUser.role,
                 email: newUser.email,
-                token: getUserId(newUser._id)
+                token: getUserId(newUser.id)
             }
         })
     } catch (error) {
@@ -103,7 +104,7 @@ const signInUser = async (req,res) => {
                 politicalPosition: userExists.politicalPosition,
                 votedParty: userExists.votedParty,
                 votedCandidates: userExists.votedCandidates,
-                token: getUserId(userExists._id)
+                token: getUserId(userExists.id)
             }
         })
     } catch (e) {
@@ -113,23 +114,41 @@ const signInUser = async (req,res) => {
 
 const editClientProfile = async (req,res) => {
     try {
-        
+        const user = await User.findById(req.user.id).select('-password')
+
+        if(!user) {
+           return res.status(400).json({message: 'no user found', code: user})
+        }
+
+        const updateUserDetails = req.body
+
+        for (let key in updateUserDetails) {
+            if (user[key] !== undefined) {
+                user[key] = updateUserDetails[key];
+            }
+        }
+
+        await user.save()
+
+        res.json(user)
     } catch (error) {
         res.status(400).json(errorMessages.editClientProfile)
     }
 }
 
-const getUserProfile = async () => {
+const getUserProfile = async (req,res) => {
     try {
-        const client = await User.findById(req.client._id).select('-password')
+        
+        const user = await User.findById(req.user.id).select('-password')
 
-        if(!client) {
-           return res.status(400).json({message: 'no user found'})
+
+        if(!user) {
+           return res.status(400).json({message: 'no user found', code: user})
         }
 
-        res.json(client)
+        res.json(user)
     } catch (e) {
-        res.status(400).json(errorMessages.specificUser)
+        res.status(400).json({code: e.message})
     }
 }
 

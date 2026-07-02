@@ -13,6 +13,8 @@ const method = ['GET','POST','PATCH','PUT','DELETE'];
 
 connectDB()
 
+
+
 // middleware base
 app.use(
   cors({
