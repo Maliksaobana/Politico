@@ -79,6 +79,16 @@ body {
 .form_input {
     width: 100%;
 }
+
+.input_grid {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: .8rem;
+}
+.grid_child {
+    flex: 1;
+}
 .form_input h5 {
     margin-bottom: .4rem;
     text-transform: capitalize;

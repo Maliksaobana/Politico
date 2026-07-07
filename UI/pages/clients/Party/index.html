@@ -48,22 +48,104 @@
             </div>
         </aside>
         <section class="display_main">
-            <div class="display_header">
-                <div class="display_logo">
-                    <h1>Party</h1>
+            <div class="wrap_head">
+                <div class="display_header">
+                    <div class="display_logo">
+                        <h1>Party</h1>
+                    </div>
+                    <button class="menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
-                <button class="menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                <div class="create_party_btn active">
+                    <div class="page_info">
+                        <h2>List of Political Parties</h2>
+                    </div>
+                    <button class="create_party">create party</button>
+                </div>
             </div>
+
+            <!-- create party menu -->
+             <section class="create_new_party">
+                <form>
+                    <div class="create_new_party_info">
+                        <div class="create_new_party_form_header">
+                            <div class="create_new_party_img">
+                                <span>ad</span>
+                            </div>
+                        </div>
+                        <div class="create_new_party_form_info">
+                            <div class="user_input">
+                                <h5>party name</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field">Name.......</h1>
+                                    </div>
+                                    <button class="admin_edit_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>party Shortname</h5>
+                                <div class="edit_mode">
+                                    <div class="shortName">
+                                        <h1 class="text_field">Example: pdp</h1>
+                                    </div>
+                                    <button class="shortName_admin_edit_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>slogan</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field">we rise and fall together</h1>
+                                    </div>
+                                    <button class="admin_edit_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>color</h5>
+                                <div class="edit_mode">
+                                    <div class="for_colors">
+                                        <h1 class="text_field">Example: #00000, black,.....</h1>
+                                    </div>
+                                    <button class="color">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>motto</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field"></h1>
+                                    </div>
+                                    <button class="area_icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create_new_party_save_btn">
+                            <button class="createParty">Create Party</button>
+                        </div>
+                    </div>
+                </form>
+             </section>
+
+            <!-- dynamic shown list of party and create party if user desires -->
             <section class="list_of_party active">
                 <div class="party_items">
-                    <div class="create_party_btn">
-                        <div class="page_info">
-                            <h2>List of Political Parties</h2>
-                        </div>
-                        <button><a href="../CreateParty/index.html" target="_parent" rel="no-referrer" rel="no-opener">create party</a></button>
-                    </div>
                     <div class="party_lists">
                         <div class="party_card">
                             <div class="party_card_info">
@@ -82,12 +164,14 @@
                                 </div>
                             </div>
                             <div class="call_to_action">
-                                <button class="join"><a>join</a></button>
+                                <button class="join">join</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <!-- dynamic show if user already has or joined a party -->
             <main class="profile_wrapper">
                 <div class="profile_info">
                     <div class="profile_form_header">

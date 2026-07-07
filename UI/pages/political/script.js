@@ -1,15 +1,27 @@
-import { closeMenuBtn, openMenuBtn, openMenu ,openMenuBtnIcon, closeMenu, dashboardMenu, adminUser } from "../script.js";
+export const closeMenuBtn = document.querySelector('.menu_close'),
+    openMenuBtn = document.querySelector('.menu'),
+    openMenuBtnIcon = document.querySelector('.menu i'),
+    adminUser = document.querySelector('.only_admin'),
+    dashboardMenu = document.querySelector('.dashboard_menu');
 
 
-openMenuBtn.addEventListener('click', openMenu)
-closeMenuBtn.addEventListener('click', closeMenu)
+export const closeMenu = () => {
+    setTimeout(()=>{
+        dashboardMenu.classList.toggle('open')
+        openMenuBtn.classList.toggle('closeTab')
+        openMenuBtnIcon.classList.toggle('close')
+    },200)
+    closeMenuBtn.classList.toggle('close')
+}
 
-
-
-const editButtons = document.querySelectorAll('.admin_edit_icon')
-
-const textAreaBtn = document.querySelector(".area_icon")
-const profileEditBtn = document.querySelector(".edit_icon")
+export const openMenu = () => {
+    dashboardMenu.classList.toggle('open')
+    openMenuBtnIcon.classList.toggle('close')
+    setTimeout(()=>{
+        openMenuBtn.classList.toggle('closeTab')
+    },100)
+    closeMenuBtn.classList.remove('close')
+}
 
 export const convertToInput = (e) => {
     let value = e.target.parentElement.previousElementSibling.firstElementChild.textContent
@@ -41,19 +53,6 @@ export const convertToH_One = (e) => {
 
         e.target.setAttribute('class', 'fa-solid fa-pencil')
 }
-
-editButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        if(e.target.getAttribute('class') === 'fa-solid fa-pencil') {
-            convertToInput(e)
-        }else {
-            convertToH_One(e)
-        }
-
-    })
-})
 
 export const editTextarea = (e) =>{
     e.preventDefault()
@@ -90,13 +89,6 @@ export const editTextarea = (e) =>{
         }
 }
 
-textAreaBtn.addEventListener('click', (e) => editTextarea(e))
-profileEditBtn.addEventListener('click', (e) => {
-    e.preventDefault()
+closeMenuBtn.addEventListener('click', closeMenu)
 
-    if(e.target.getAttribute('class') === 'fa-solid fa-pencil') {
-        convertToInput(e)
-    }else {
-        convertToH_One(e)
-    }
-})
+openMenuBtn.addEventListener('click', openMenu)

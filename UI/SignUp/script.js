@@ -11,7 +11,8 @@ const signUpBtn = document.querySelector(".sign_up"),
     postUserConfirmedPassword = document.querySelector('.confirm'),
     postUserPassword = document.querySelector('[type=password]'),
     postUserEmail = document.querySelector('[type=email]'),
-    postUserName = document.querySelector('[type=text]')
+    postUserName = document.querySelector('[type=text]'),
+    postAdminToken = document.querySelector('.admin_token')
 
 
 const signInUser = async () => {
@@ -19,6 +20,7 @@ const signInUser = async () => {
         name: postUserName.value,
         email: postUserEmail.value,
         password: postUserConfirmedPassword.value,
+        token: postAdminToken.value,
     }
 
     

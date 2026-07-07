@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcryptjs')
 const User = require("../models/user")
@@ -38,7 +40,8 @@ const signUpUser = async (req,res) => {
         const { 
             name,
             email,
-            password } = req.body
+            password,
+            adminToken } = req.body
 
         const userExists = await User.findOne( {email} )
 
@@ -48,8 +51,8 @@ const signUpUser = async (req,res) => {
         
         let role = 'member'
 
-        if(role && role !== 'member' ) {
-            role = 'politician'
+        if(adminToken && adminToken === process.env.ADMIN_TOKEN ) {
+            role = 'admin'
         }
 
         const salt = await bcrypt.genSalt(10)

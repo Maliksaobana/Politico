@@ -6,23 +6,14 @@ const cors = require('cors')
 const authroute = require("./routers/authroute.js")
 const partyroute = require("./routers/partyroute.js")
 const path = require('path');
-const page = require('./page.js')
 const connectDB = require('./db/db.js');
 const port = process.env.PORT || 5080;
 
 const method = ['GET','POST','PATCH','PUT','DELETE'];
 
-// Url path and appropriate file path
-
-app.use(express.static(path.join(__dirname,"UI")))
-
-app.use("/",page)
-
-
-
 // connect Database
 
-connectDB()
+// connectDB()
 
 
 
