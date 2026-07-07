@@ -1,42 +1,29 @@
 const mongoose = require("mongoose")
 
 
-const partyPositions = mongoose.Schema(
-    {
-        positions: {type:String,},
-        dateInOffice: {type: String},
-        dateOfficeWasCreated: {type: String, default: "1958-10-20"},
-        candidateName: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true}
-    }
-)
-
-const runningCandidates = mongoose.Schema({
-    contestingPosition: {type: String, required:true},
-    totalVotes: {type: Number, default: 0},
+const runningCandidates = new mongoose.Schema({
+    contestingPosition: {type:mongoose.Schema.Types.ObjectId, ref:'Office'},
     candidateID: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true},
-    status: {type: String, enum: ['loser','winner','contesting'], default: 'loser'},
-    duration: {type: String, required: true},
     satisfied: {type: Boolean, default: true},
     petition: { type:String},
     politicalAgenda: {type: String}
 })
 
-const dominatingPosition = mongoose.Schema({
-    contestingPosition: {type: String, required:true},
-    candidateID: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true},
-    duration: {type: String, required: true}
+const dominatingPosition = new mongoose.Schema({
+    Positions: {type: mongoose.Schema.Types.ObjectId, ref:'Office', required: true},
 })
 
-const politicalParty = mongoose.Schema(
+const politicalParty = new mongoose.Schema(
     {
         partyName: {type:String , required: true},
-        partyLogo: {type:String , required: true},
-        partyCreator: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true},
+        hqAddress: {type:String, required: true},
+        partyCreator: {type: mongoose.Schema.Types.ObjectId, ref:'Client'},
         partyShortName: {type:String, minlength: 2, maxlength: 3},
-        status: {type: String, enum: ['contesting','winner','not contesting'], default: 'not contesting'},
         partyCandidates: [runningCandidates],
         partyPositions: [dominatingPosition],
-
+        partyColor: {type:String,required: true},
+        partySlogan: {type: String, required: true,minlength: 3, maxlength: 1000},
+        partyMotto: {type: String, required: true,minlength: 3, maxlength: 1000}
     },
     { timestamps: true }
 )

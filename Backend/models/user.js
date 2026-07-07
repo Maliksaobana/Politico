@@ -10,8 +10,7 @@ const politicalUser = new mongoose.Schema(
         role: { type: String, enum: ['member','admin'], default: 'member' },
         // politicalPosition: { type: String, default: 'member'},
         // hasAParty: { type: Boolean, default: false },
-        votedParty: [{}],
-        votedCandidates: [{type: String}],
+        votedParticipatedOn: [{type:mongoose.Schema.Types.ObjectId, ref:'Vote'}],
     },
     { timestamps: true }
 )

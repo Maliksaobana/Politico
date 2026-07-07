@@ -13,7 +13,7 @@ const method = ['GET','POST','PATCH','PUT','DELETE'];
 
 // connect Database
 
-// connectDB()
+connectDB()
 
 
 
@@ -23,7 +23,6 @@ app.use(
     origin: '*',
     methods: method,
     allowedHeaders: ['Content-Type','Authorization']
-
   })
 )
 
@@ -33,7 +32,7 @@ app.use(express.json())
 
 
 app.use('/api/v1/auth', authroute) // use route for authentication
-app.use('/party', partyroute) // use route for party data
+app.use('/api/v1/party', partyroute) // use route for party data
 
 
 app.listen(port, () => {

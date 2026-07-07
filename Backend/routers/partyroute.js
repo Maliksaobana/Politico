@@ -7,19 +7,24 @@ const {
     createOffice,
     getAllPoliticalOffice,
     getSpecificPoliticalOffice,
-    vote} = require('../controllers/partycontroller')
+    vote,
+    petitionElectionResult,
+    deleteOffice} = require('../controllers/partycontroller.js')
+const { adminOnly,protect } = require('../middleware/ware')
 
 const router = require('express').Router()
 
-router.post('/v1/createparty',createParty)
-router.patch('/v1/editparty/:id',editAParty)
-router.delete('/v1/deleteparty/:id',deleteAParty)
-router.get('/v1/partylist',getAllParty)
-router.get('/v1/partylist/:id',getSpecificParty)
-router.post('/v1/party/office/createoffice',createOffice)
-router.patch('/v1/election/vote',vote)
-router.get('/v1/office/',getAllPoliticalOffice)
-router.get('/v1/office/:id',getSpecificPoliticalOffice)
+router.post('/createparty',adminOnly,createParty)
+router.patch('editparty/:id',adminOnly,editAParty)
+router.delete('/deleteparty/:id',adminOnly,deleteAParty)
+router.get('/partylist',getAllParty)
+router.post('/partylist/party',getSpecificParty)
+router.post('/party/office/createoffice',adminOnly,createOffice)
+router.post('/party/office/createoffice',adminOnly,deleteOffice)
+router.post('/party/office/createoffice',protect,petitionElectionResult)
+router.patch('/election/vote',vote)
+router.get('/office/',getAllPoliticalOffice)
+router.post('/office/:id',getSpecificPoliticalOffice)
 
 
 

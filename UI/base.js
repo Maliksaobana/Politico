@@ -10,5 +10,9 @@ export const url_endpoints = {
     },
     userDashBoard: {
         getDetails: '/api/v1/user/dashboard'
+    },
+    party: {
+        createParty: '/api/v1/party/createparty',
+        getAllParty: '/api/v1/party/partylist'
     }
 }
