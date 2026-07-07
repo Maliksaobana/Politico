@@ -165,46 +165,32 @@ body{
     display: flex;
     flex-flow: column nowrap;
     gap: .8rem;
+}
 
-    li {
-        padding: 1rem;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        gap: .5rem;
-        font-size: 1rem;
-        transition: all .4s ease;
-        cursor: pointer;
-        
-
-        a {
-            flex: 1;
-            font-weight: 700;
-        }
-
-
-        &.active {
-            background: var(--color-colorFour);
-            color: var(--color-colorThree);
-            border: none;
-        }
-
-        &:hover {
-            background: var(--color-colorFour);
-            color: var(--color-colorThree);
-        }
+.politico_menu {
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1rem;
+    transition: all .4s ease;
+    cursor: pointer;
+    
+    a {
+        flex: 1;
+        font-weight: 700;
     }
-    .only_admin {
-        display: none;
 
-        &.admin{
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            font-size: 1rem;
-            transition: all .4s ease;
-            cursor: pointer;
-        }
+    &.active {
+        background: var(--color-colorFour);
+        color: var(--color-colorThree);
+        border: none;
+    }
+    
+    &:hover {
+        background: var(--color-colorFour);
+        color: var(--color-colorThree);
     }
 }
 
@@ -328,6 +314,7 @@ body{
 /* ends ======================================== */
 
 .vote_wrapper {
+    display: block;
     margin-top: 1.5rem;
 }
 
@@ -474,6 +461,10 @@ body{
     }
 }
 
+.petition_btn.isPolitician {
+    display: none;
+}
+
 
 @media (max-width: 720px) {
     .electorate_holder {
@@ -487,5 +478,183 @@ body{
 @media (max-width: 420px) {
     .call_to_action {
         flex-wrap: wrap;
+    }
+}
+
+
+
+
+
+.feed_wrapper.query,
+.vote_wrapper.query {
+    display: none;
+}
+
+.feed_wrapper {
+    margin-top: 1.5rem;
+    display: block;
+}
+
+
+.feed_header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    padding-bottom: .8rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.feed_header h1 {
+    text-transform: capitalize;
+}
+
+
+.profile_info {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 2rem;
+}
+.profile_form_header {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+
+.profile_form_header .profile_img {
+    width: 200px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 8px;
+
+    span {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        background: red;
+        font-weight: bold;
+        color: #fff;
+        font-size: 1.3rem;
+    }
+}
+
+.profile_form_info {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+
+.profile_form_header .admin_info h1 {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.profile_form_header .admin_info h2 {
+    font-size: clamp(.9rem, 2vw, 1.1rem);
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.profile_form_header .admin_info h3 {
+    font-size: clamp(.85rem, 2vw, 1rem);
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+
+.user_input {
+    width: 100%;
+}
+.user_input h5 {
+    margin-bottom: .4rem;
+    text-transform: capitalize;
+    font-size: 1rem;
+}
+
+.edit_mode {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: .8rem;
+}
+
+.input_field {
+    flex: 1;
+    p {
+        font-size: 13px;
+        margin-top: .2rem;
+    }
+}
+
+.input_field input {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: .8rem;
+    font-size: 1rem;
+    width: 100%;
+    outline: none;
+}
+.input_field input::placeholder {
+    text-transform: capitalize;
+}
+.edit_icon,
+.textarea_icon {
+    border: none;
+    background: none;
+    width: fit-content;
+    height: fit-content;
+    outline: none;
+    border-radius: 50%;
+}
+
+.textarea_field {
+    resize: none;
+    width: 100%;
+    height: 140px;
+    padding: .8rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 8px;
+}
+
+
+.profile_save_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-block: 1rem;
+
+    button {
+        width: 100%;
+        padding: .8rem;
+        max-width: 300px;
+        font-weight: bold;
+        font-size: 1rem;
+        text-transform: capitalize;
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        background: var(--color-colorFour);
+        color: var(--color-colorThree);
+        cursor: pointer;
+
+        &:hover {
+            outline: 1px solid var(--color-colorFour);
+            outline-offset: 2px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .profile_form_header {
+        flex-direction: column;
+        justify-content: start;
     }
 }

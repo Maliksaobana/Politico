@@ -173,46 +173,32 @@ body{
     display: flex;
     flex-flow: column nowrap;
     gap: .8rem;
+}
 
-    li {
-        padding: 1rem;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        gap: .5rem;
-        font-size: 1rem;
-        transition: all .4s ease;
-        cursor: pointer;
-        
-
-        a {
-            flex: 1;
-            font-weight: 700;
-        }
-
-
-        &.active {
-            background: var(--color-colorFour);
-            color: var(--color-colorThree);
-            border: none;
-        }
-
-        &:hover {
-            background: var(--color-colorFour);
-            color: var(--color-colorThree);
-        }
+.politico_menu {
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1rem;
+    transition: all .4s ease;
+    cursor: pointer;
+    
+    a {
+        flex: 1;
+        font-weight: 700;
     }
-    .only_admin {
-        display: none;
 
-        &.admin{
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            font-size: 1rem;
-            transition: all .4s ease;
-            cursor: pointer;
-        }
+    &.active {
+        background: var(--color-colorFour);
+        color: var(--color-colorThree);
+        border: none;
+    }
+    
+    &:hover {
+        background: var(--color-colorFour);
+        color: var(--color-colorThree);
     }
 }
 
@@ -345,7 +331,8 @@ body{
 
 .profile_wrapper,
 .list_of_party,
-.create_new_party {
+.create_new_party,
+.edit_party {
     display: none;
     margin-top: 1.5rem;
 }
@@ -627,7 +614,8 @@ td:last-child {
 
 .profile_wrapper.active,
 .list_of_party.active,
-.create_new_party.active {
+.create_new_party.active,
+.edit_party.active {
     display: block;
 }
 
@@ -720,9 +708,11 @@ td:last-child {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: .8rem;
 }
 
-.call_to_action .join {
+.call_to_action .isAdmin.join,
+.call_to_action .isAdmin {
     font-size: 1rem;
     font-weight: bold;
     text-transform: capitalize;
@@ -752,6 +742,13 @@ td:last-child {
         outline-offset: 2px;
     }
 }
+
+.call_to_action .isAdmin.del {
+    background: none;
+    color: red;
+    display: none;
+    border: 1px solid red;
+} 
 
 
 @media (max-width: 980px) {
@@ -819,12 +816,14 @@ td:last-child {
 
 .input_field,
 .shortName,
-.for_colors {
+.for_colors,
+.edit_for_colors {
     flex: 1;
 }
 .input_field h1,
 .shortName h1,
-.for_colors h1 {
+.for_colors h1,
+.edit_for_colors h1 {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -833,7 +832,8 @@ td:last-child {
 
 .input_field input,
 .shortName input,
-.for_colors input {
+.for_colors input,
+.edit_for_colors input {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: .8rem;
@@ -841,7 +841,8 @@ td:last-child {
     width: 100%;
     outline: none;
 }
-.input_field input::placeholder {
+.input_field input::placeholder,
+ .shortName input::placeholder{
     text-transform: capitalize;
 }
 .edit_icon,
@@ -889,7 +890,8 @@ td:last-child {
     height: 120px;
 }
 
-.create_new_party_save_btn {
+.create_new_party_save_btn,
+.edit_clicked_party {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -914,4 +916,9 @@ td:last-child {
             outline-offset: 2px;
         }
     }
+}
+
+
+.politico_menu.pol_access {
+    display: none;
 }

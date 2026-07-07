@@ -1,4 +1,6 @@
-import { closeMenuBtn, openMenuBtn, openMenu ,openMenuBtnIcon, closeMenu,convertToInput, convertToH_One, editTextarea } from "../../political/script.js";
+import { closeMenuBtn, openMenuBtn, openMenu ,openMenuBtnIcon, closeMenu,convertToInput, convertToH_One, editTextarea} from "../baseExports.js"
+
+
 
 const createPartyBtn = document.querySelector('.create_party'),
     partyHeaderText = document.querySelector('.page_info h2'),
@@ -6,11 +8,13 @@ const createPartyBtn = document.querySelector('.create_party'),
     hasAParty = document.querySelector('.profile_wrapper'),
     createPartyMenu = document.querySelector('.create_new_party'),
     createPartyImg = document.querySelector('.create_new_party_img span'),
-    joinPArty = document.querySelector('.join'),
+    btnToJoinOrDeleteParty = document.querySelector('.join'),
     createNewParty = document.querySelector(".createParty"),
     leaveParty = document.querySelector('.leave_party_btn'),
     PartyColor = document.querySelector('.for_color'),
-    shortName = document.querySelector('.shortName')
+    shortName = document.querySelector('.shortName'),
+    selectCreatedArm = document.querySelector('.select_arm'),
+    selectCreatedLevel = document.querySelector('.select_level')
 
 const editButtons = document.querySelectorAll('.admin_edit_icon')
 const shortNameEditButtons = document.querySelector('.shortName_admin_edit_icon')
@@ -55,15 +59,15 @@ closeMenuBtn.addEventListener('click', closeMenu)
 
 createPartyBtn.addEventListener("click", () => {
 
-    if(createPartyBtn.textContent === 'join party') {
-        createPartyBtn.textContent = 'Create party'
+    if(createPartyBtn.textContent === 'view office') {
+        createPartyBtn.textContent = 'Create office'
         listAllParty.classList.add('active')
-        partyHeaderText.textContent = 'List of Political Parties'
+        partyHeaderText.textContent = 'List of Political Office(s)'
         createPartyMenu.classList.remove('active')
     }else {
-        createPartyBtn.textContent = 'join party'
+        createPartyBtn.textContent = 'view office'
         listAllParty.classList.remove('active')
-        partyHeaderText.textContent = 'Create Political Party'
+        partyHeaderText.textContent = 'Create Political Office'
         createPartyMenu.classList.add('active')
     }
 

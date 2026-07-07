@@ -161,46 +161,32 @@ body{
     display: flex;
     flex-flow: column nowrap;
     gap: .8rem;
+}
 
-    li {
-        padding: 1rem;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        gap: .5rem;
-        font-size: 1rem;
-        transition: all .4s ease;
-        cursor: pointer;
-        
-
-        a {
-            flex: 1;
-            font-weight: 700;
-        }
-
-
-        &.active {
-            background: var(--color-colorFour);
-            color: var(--color-colorThree);
-            border: none;
-        }
-
-        &:hover {
-            background: var(--color-colorFour);
-            color: var(--color-colorThree);
-        }
+.politico_menu {
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1rem;
+    transition: all .4s ease;
+    cursor: pointer;
+    
+    a {
+        flex: 1;
+        font-weight: 700;
     }
-    .only_admin {
-        display: none;
 
-        &.admin{
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            font-size: 1rem;
-            transition: all .4s ease;
-            cursor: pointer;
-        }
+    &.active {
+        background: var(--color-colorFour);
+        color: var(--color-colorThree);
+        border: none;
+    }
+    
+    &:hover {
+        background: var(--color-colorFour);
+        color: var(--color-colorThree);
     }
 }
 

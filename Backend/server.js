@@ -37,5 +37,5 @@ app.use('/party', partyroute) // use route for party data
 
 
 app.listen(port, () => {
-  console.log(`Developing on port ${port}`);
+  console.log(`Running on port ${port}`);
 });

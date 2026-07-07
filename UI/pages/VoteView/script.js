@@ -1,4 +1,4 @@
-import { closeMenuBtn, openMenuBtn, openMenu ,openMenuBtnIcon, closeMenu, dashboardMenu, adminUser } from "../script.js";
+import { closeMenuBtn, openMenuBtn, openMenu ,openMenuBtnIcon, closeMenu, dashboardMenu, adminUser } from "../baseExports.js";
 
 
 openMenuBtn.addEventListener('click', openMenu)
