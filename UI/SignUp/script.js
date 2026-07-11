@@ -1,21 +1,59 @@
+// api end point
+
+import { base_url, url_endpoints } from "../base.js"
+
+
+const { signup:signUpAuth } = url_endpoints.user
+
+
 const signUpBtn = document.querySelector(".sign_up"),
     wrapper = document.querySelector('.signup_wrapper'),
     postUserConfirmedPassword = document.querySelector('.confirm'),
     postUserPassword = document.querySelector('[type=password]'),
     postUserEmail = document.querySelector('[type=email]'),
-    postUserName = document.querySelector('[type=text]')
+    postUserName = document.querySelector('[type=text]'),
+    postAdminToken = document.querySelector('.admin_token')
 
 
 const signInUser = async () => {
-    let dummyLogin = true
-
-    console.log('logged......')
-
-
-    if(dummyLogin) {
-        window.location.pathname = "/UI/pages/clients/index.html"
-        console.log('logged in')
+    const body = {
+        name: postUserName.value,
+        email: postUserEmail.value,
+        password: postUserConfirmedPassword.value,
+        token: postAdminToken.value,
     }
+
+    
+    try {
+        const responce = await fetch(`${base_url}${signUpAuth}`,{
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+
+        if(!responce.ok) {
+            throw new Error(`${responce.status}: unable to register user try agin`)
+
+            return
+        }
+
+        const data = await responce.json()
+
+        const setToken = localStorage.setItem('token',JSON.stringify(data.body.token))
+
+
+
+    } catch (e) {
+        console.error(e.message)
+    }
+
+
+    // if(dummyLogin) {
+    //     window.location.pathname = "/UI/pages/clients/index.html"
+    //     console.log('logged in')
+    // }
 
 }
 
@@ -93,5 +131,5 @@ signUpBtn.addEventListener("click", (e) => {
         postUserConfirmedPassword.parentElement.classList.add('good')
     }
     
-    // signInUser()
+    signInUser()
 })

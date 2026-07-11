@@ -2,7 +2,8 @@ const {
     signInUser, 
     signUpUser,
     editClientProfile,
-    getUserProfile } 
+    getUserProfile,
+    createNewPAssword } 
     = require('../controllers/authcontroller')
 const { protect } = require('../middleware/ware')
 
@@ -12,7 +13,10 @@ const router = require('express').Router()
 
 router.post('/signin',signInUser)
 
-router.patch('/profile/edit/:id', protect, editClientProfile)
+router.patch('/profile/edit', protect, editClientProfile)
+
+
+router.patch('/profile/forgetpassword', protect, createNewPAssword)
 
 router.get('/profile', protect, getUserProfile)
 

@@ -1,3 +1,14 @@
+import { base_url,url_endpoints } from "../base.js"
+
+
+const {password:forgetPasswordUrl} = url_endpoints.user
+
+const token = JSON.parse(localStorage.getItem('token'))
+
+console.log(token)
+
+
+
 const confirmNewPassword = document.querySelector(".confirm"),
     createNewPassword = document.querySelector("[type=password]"),
     wrapper = document.querySelector('.forget_wrapper')
@@ -5,18 +16,30 @@ const confirmNewPassword = document.querySelector(".confirm"),
 const confirmPasswordBtn = document.querySelector(".confirm_btn")
 
 const editUserPassword = async () => {
-    let dummyLogin = true
-    const role = 'politician'
-
-    console.log('logged......')
-
-
-    if(dummyLogin) {
-        window.location.pathname = "/UI/SignIn/signin.html"
-        console.log('logged in')
+    const body = {
+        password: confirmNewPassword.value
     }
 
-    console.log('not logged in')
+    try {
+        const confirmChangeOfPassword = await fetch(`${base_url}${forgetPasswordUrl}`,{
+            method: 'PATCH',
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        if(!confirmChangeOfPassword.ok) {
+            return `${confirmChangeOfPassword.status}: ${confirmChangeOfPassword.json}`
+        }
+
+        const data = await confirmChangeOfPassword.json()
+
+        console.log(data)
+    } catch (e) {
+        console.error(e.message)
+    }
 }
 
 

@@ -1,35 +1,38 @@
 const mongoose = require("mongoose")
 
 
-const Votes = mongoose.Schema(
-    {
-        votes: {type: Number, default: 0}
-    }
-)
+const partyPoliticalCandidates = new mongoose.Schema({
+    contestingPosition: {type:mongoose.Schema.Types.ObjectId, ref:'Office'},
+    candidateID: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true},
+    satisfied: {type: Boolean, default: true},
+    petition: { type:String},
+    politicalAgenda: {type: String}
+})
 
-const partyPositions = mongoose.Schema(
-    {
-        positions: {type:String,},
-        dateInOffice: {type: String},
-        dateOfficeWasCreated: {type: String, default: "1958-10-20"}
-    }
-)
+const partyHeldPositions = new mongoose.Schema({
+    Positions: {type: mongoose.Schema.Types.ObjectId, ref:'Office', required: true},
+})
 
-const politicalParty = mongoose.Schema(
-    {
-        partyName: {type:String , required: true},
-        partyLogo: {type:String , required: true},
-        partyCreator: {type:String , required: true},
-        partyShortName: {type:String, minlength: 2, maxlength: 3},
-        partyCandidates: [{type: mongoose.Schema.Types.ObjectId, ref:'Client'}],
-        partyPositions: [{type: String}],
-        totalVotes: {Votes},
-        duration: {type: String, required: true}
+// this model create a political party
 
+const politicalParty = new mongoose.Schema(
+    {
+        partyName: {type:String , required: true,unique:true},
+        hqAddress: {type:String, required: true},
+        partyShortName: {type:String, minlength: 2, maxlength: 10,unique:true},
+        partyCandidates: [partyPoliticalCandidates],
+        partyPositions: [partyHeldPositions],
+        partyColor: {type:String,required: true},
+        partySlogan: {type: String, required: true,minlength: 3, maxlength: 1000},
+        partyMotto: {type: String, required: true,minlength: 3, maxlength: 1000}
     },
     { timestamps: true }
 )
 
 
 
-module.exports = mongoose.model("Party", politicalParty)
+const Party = mongoose.model("Party", politicalParty)
+
+module.exports = {
+    Party
+}

@@ -1,0 +1,11 @@
+const { voteCandidate,getAllParticipates } = require('../controllers/votecontroller')
+const { protect } = require('../middleware/ware')
+
+const router = require('express').Router()
+
+
+router.get('/', protect, getAllParticipates)
+
+router.patch('/:id', protect ,voteCandidate)
+
+module.exports = router

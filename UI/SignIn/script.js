@@ -1,3 +1,9 @@
+import { base_url, url_endpoints } from "../base.js"
+
+
+const { signIn:signInAuth } = url_endpoints.user
+
+
 const getUserEmail = document.querySelector("[type=email]"),
     getUserPassword = document.querySelector("[type=password]"),
     wrapper = document.querySelector('.signin_wrapper')
@@ -5,20 +11,43 @@ const getUserEmail = document.querySelector("[type=email]"),
 const logInBtn = document.querySelector(".log_in")
 
 const logUser = async () => {
-    let dummyLogin = true
-    const role = 'politician'
-
-    console.log('logged......')
-
-
-    if(dummyLogin && role === 'politician') {
-        window.location.pathname = "/UI/pages/political/index.html"
-        console.log('logged in')
-    }else {
-        window.location.pathname = "/UI/pages/clients/index.html"
+    const body = {
+        email: getUserEmail.value,
+        password: getUserPassword.value
     }
 
-    console.log('not logged in')
+
+    try {
+        const logInUser = await fetch(`${base_url}${signInAuth}`,{
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+
+        if(!logInUser.ok) {
+            throw new Error(`${logInUser.status}: unable to login user, try agin`)
+        }
+
+        const data = await logInUser.json()
+
+        const getToken = localStorage.setItem('token',JSON.stringify(data.body.token))
+
+        console.log(data)
+    } catch (e) {
+        console.error(e.message)
+    }
+
+
+    // if(dummyLogin && role === 'politician') {
+    //     window.location.pathname = "/UI/pages/political/index.html"
+    //     console.log('logged in')
+    // }else {
+    //     window.location.pathname = "/UI/pages/clients/index.html"
+    // }
+
+
 }
 
 

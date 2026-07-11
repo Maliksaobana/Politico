@@ -102,9 +102,9 @@ body {
 }
 
 .info {
-    margin-block-start: .4rem;
+    margin-block-start: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
 
     a {

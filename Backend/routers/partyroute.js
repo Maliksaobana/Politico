@@ -1,27 +1,20 @@
 const { 
     createParty, 
     editAParty, 
-    deleteAParty, 
-    getAllParty,
-    getSpecificParty,
-    createOffice,
-    getAllPoliticalOffice,
-    getSpecificPoliticalOffice,
-    vote} = require('../controllers/partycontroller')
+    deleteAParty,
+    joinParty,
+    getSpecificParty, 
+    getAllParty} = require('../controllers/partycontroller.js')
+const { adminOnly,protect } = require('../middleware/ware')
 
 const router = require('express').Router()
 
-router.post('/v1/createparty',createParty)
-router.patch('/v1/editparty/:id',editAParty)
-router.delete('/v1/deleteparty/:id',deleteAParty)
-router.get('/v1/partylist',getAllParty)
-router.get('/v1/partylist/:id',getSpecificParty)
-router.post('/v1/party/office/createoffice',createOffice)
-router.patch('/v1/election/vote',vote)
-router.get('/v1/office/',getAllPoliticalOffice)
-router.get('/v1/office/:id',getSpecificPoliticalOffice)
-
-
+router.post('/createparty',protect,adminOnly,createParty)
+router.patch('/editparty/:id',protect,adminOnly,editAParty)
+router.patch('/partylist/join/:id',protect,joinParty)
+router.delete('/deleteparty/:id',protect,adminOnly,deleteAParty)
+router.get('/partylist',protect,getAllParty)
+router.get('/partylist/:id',protect,getSpecificParty)
 
 
 module.exports = router

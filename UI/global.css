@@ -49,13 +49,14 @@ body{
 
 .header_main {
     width: 100%;
-    padding-block: 1.5rem;
+    padding-block: 1rem;
     padding-inline: var(--padding-primary);
     z-index: 999;
     border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* border: 1px solid; */
 }
 
 /* header section begins */
@@ -184,7 +185,6 @@ body{
     align-items: center;
     justify-content: center;
     padding-inline: var(--padding-primary);
-    padding-block: 1rem;
     /* border: 1px solid; */
 }
 .main_header {
@@ -224,6 +224,7 @@ body{
 .main_img {
     height: 100%;
     flex: 1 1 100%;
+    /* border: 1px solid; */
 }
 
 .main_img img {

@@ -5,13 +5,20 @@ const app = express();
 const cors = require('cors')
 const authroute = require("./routers/authroute.js")
 const partyroute = require("./routers/partyroute.js")
+const officeroute = require("./routers/officeroute.js")
+const officeRegisterRoute = require("./routers/registerRoute.js")
+const voteFair = require("./routers/voteroute.js")
 const path = require('path');
 const connectDB = require('./db/db.js');
 const port = process.env.PORT || 5080;
 
 const method = ['GET','POST','PATCH','PUT','DELETE'];
 
+// connect Database
+
 connectDB()
+
+
 
 // middleware base
 app.use(
@@ -19,7 +26,6 @@ app.use(
     origin: '*',
     methods: method,
     allowedHeaders: ['Content-Type','Authorization']
-
   })
 )
 
@@ -29,9 +35,12 @@ app.use(express.json())
 
 
 app.use('/api/v1/auth', authroute) // use route for authentication
-app.use('/party', partyroute) // use route for party data
+app.use('/api/v1/party', partyroute) // use route for party data
+app.use('/api/v1/office',officeroute) // use route for office data
+app.use('/api/v1/office/register',officeRegisterRoute) // use route for office candidate registeration
+app.use('/api/v1/vote',voteFair) // use route for voting in election election
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Running on port ${port}`);
 });
