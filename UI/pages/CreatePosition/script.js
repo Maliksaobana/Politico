@@ -17,10 +17,10 @@ const createPartyBtn = document.querySelector('.create_party'),
     selectCreatedLevel = document.querySelector('.select_level')
 
 const editButtons = document.querySelectorAll('.admin_edit_icon')
-const shortNameEditButtons = document.querySelector('.shortName_admin_edit_icon')
 const partyColorEditButtons = document.querySelector('.color')
 
 const textAreaBtn = document.querySelector(".area_icon")
+
 
 const change_color = (e) => {
 
@@ -86,56 +86,9 @@ editButtons.forEach(btn => {
     })
 })
 
-shortNameEditButtons.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        if(e.target.getAttribute('class') === 'fa-solid fa-pencil') {
-            let value = e.target.parentElement.previousElementSibling.firstElementChild.textContent
-
-            e.target.parentElement.previousElementSibling.firstElementChild.remove()
-
-            const inputField = document.createElement("input")
-
-            inputField.setAttribute('class','edit_field')
-            inputField.setAttribute('maxlength','3')
-
-            inputField.value = value
-
-            e.target.parentElement.previousElementSibling.appendChild(inputField)
 
 
-            e.target.setAttribute('class', 'fa-solid fa-check')
-        }else {
-            convertToH_One(e)
-            change_partyShortName(e)
-        }
 
-})
-
-partyColorEditButtons.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        if(e.target.getAttribute('class') === 'fa-solid fa-pencil') {
-            let value = e.target.parentElement.previousElementSibling.firstElementChild.textContent
-
-            e.target.parentElement.previousElementSibling.firstElementChild.remove()
-
-            const inputField = document.createElement("input")
-            
-            inputField.setAttribute('class','edit_field')
-
-            inputField.value = value
-
-            e.target.parentElement.previousElementSibling.appendChild(inputField)
-
-
-            e.target.setAttribute('class', 'fa-solid fa-check')
-        }else {
-            convertToH_One(e)
-            change_color(e)
-        }
-
-})
 
 
 textAreaBtn.addEventListener('click', (e) => editTextarea(e))

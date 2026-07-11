@@ -8,7 +8,6 @@ closeMenuBtn.addEventListener('click', closeMenu)
 
 const editButtons = document.querySelectorAll('.admin_edit_icon')
 
-const textAreaBtn = document.querySelector(".area_icon")
 const profileEditBtn = document.querySelector(".edit_icon")
 
 editButtons.forEach(btn => {
@@ -24,8 +23,6 @@ editButtons.forEach(btn => {
     })
 })
 
-
-textAreaBtn.addEventListener('click', (e) => editTextarea(e))
 profileEditBtn.addEventListener('click', (e) => {
     e.preventDefault()
 

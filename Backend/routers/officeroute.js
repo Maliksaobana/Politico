@@ -1,25 +1,25 @@
 const { 
-    signInUser, 
-    signUpUser,
-    editClientProfile,
-    getUserProfile,
-    createNewPAssword } 
-    = require('../controllers/officecontroller')
-const { protect } = require('../middleware/ware')
+    createOffice,
+    getAllPoliticalOffice,
+    deleteOffice,
+    editSpecificPoliticalOffice,
+    getSpecificPoliticalOffice} = require('../controllers/officecontroller')
+
+const { protect,adminOnly } = require('../middleware/ware')
 
 const router = require('express').Router()
 
 
+router.delete('/officelist/:id', protect, adminOnly,deleteOffice)
 
-router.post('/signin',signInUser)
+router.get('/officelist', protect, getAllPoliticalOffice)
 
-router.patch('/profile/edit', protect, editClientProfile)
+router.get('/officelist/:id', protect, getSpecificPoliticalOffice)
+
+router.patch('/officelist/edit/:id', protect,adminOnly,editSpecificPoliticalOffice)
+
+router.post('/createoffice',protect,adminOnly,createOffice)
 
 
-router.patch('/profile/forgetpassword', protect, createNewPAssword)
-
-router.get('/profile', protect, getUserProfile)
-
-router.post('/signup', signUpUser)
 
 module.exports = router

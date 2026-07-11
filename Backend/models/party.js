@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 
-const runningCandidates = new mongoose.Schema({
+const partyPoliticalCandidates = new mongoose.Schema({
     contestingPosition: {type:mongoose.Schema.Types.ObjectId, ref:'Office'},
     candidateID: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true},
     satisfied: {type: Boolean, default: true},
@@ -9,18 +9,19 @@ const runningCandidates = new mongoose.Schema({
     politicalAgenda: {type: String}
 })
 
-const dominatingPosition = new mongoose.Schema({
+const partyHeldPositions = new mongoose.Schema({
     Positions: {type: mongoose.Schema.Types.ObjectId, ref:'Office', required: true},
 })
 
+// this model create a political party
+
 const politicalParty = new mongoose.Schema(
     {
-        partyName: {type:String , required: true},
+        partyName: {type:String , required: true,unique:true},
         hqAddress: {type:String, required: true},
-        partyCreator: {type: mongoose.Schema.Types.ObjectId, ref:'Client'},
-        partyShortName: {type:String, minlength: 2, maxlength: 3},
-        partyCandidates: [runningCandidates],
-        partyPositions: [dominatingPosition],
+        partyShortName: {type:String, minlength: 2, maxlength: 10,unique:true},
+        partyCandidates: [partyPoliticalCandidates],
+        partyPositions: [partyHeldPositions],
         partyColor: {type:String,required: true},
         partySlogan: {type: String, required: true,minlength: 3, maxlength: 1000},
         partyMotto: {type: String, required: true,minlength: 3, maxlength: 1000}
@@ -30,4 +31,8 @@ const politicalParty = new mongoose.Schema(
 
 
 
-module.exports = mongoose.model("Party", politicalParty)
+const Party = mongoose.model("Party", politicalParty)
+
+module.exports = {
+    Party
+}

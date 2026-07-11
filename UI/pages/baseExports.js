@@ -1,3 +1,12 @@
+
+// works generally so use to set election timer for all pages
+
+window.addEventListener("load",()=>{
+    // timerConfirm()
+})
+
+
+
 export const closeMenuBtn = document.querySelector('.menu_close'),
     openMenuBtn = document.querySelector('.menu'),
     openMenuBtnIcon = document.querySelector('.menu i'),

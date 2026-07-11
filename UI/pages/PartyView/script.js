@@ -21,6 +21,10 @@ const partyColorEditButtons = document.querySelector('.color')
 
 const textAreaBtn = document.querySelector(".area_icon")
 
+window.addEventListener("load",()=>{
+    console.log("party page")
+})
+
 const change_color = (e) => {
 
     let Color = e.target.parentElement.previousElementSibling.firstElementChild.textContent;

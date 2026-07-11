@@ -133,7 +133,10 @@ const editClientProfile = async (req,res) => {
 
         await user.save()
 
-        res.json(user)
+        res.json({
+            status:200,
+            body: user
+        })
     } catch (error) {
         res.status(400).json(errorMessages.editClientProfile)
     }
@@ -142,14 +145,17 @@ const editClientProfile = async (req,res) => {
 const getUserProfile = async (req,res) => {
     try {
         
-        const user = await User.findById(req.user.id).select('-password')
+        const user = await User.findById(req.user.id).select('-password').populate("votedParticipatedOn.officeVotedFor","officeName -_id").populate("votedParticipatedOn.candidatedVotedFor","name party -_id").populate("party","-_id partyName hqAddress partyShortName partySlogan partyMotto partySlogan")
 
 
         if(!user) {
            return res.status(400).json({message: 'no user found', code: user})
         }
 
-        res.json(user)
+        res.json({
+            status:200,
+            body: user
+        })
     } catch (e) {
         res.status(400).json({code: e.message})
     }

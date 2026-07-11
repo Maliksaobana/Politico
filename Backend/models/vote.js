@@ -3,11 +3,12 @@ const mongoose = require("mongoose")
 
 const vote = new mongoose.Schema(
     {
-        name: { type: mongoose.Schema.Types.ObjectId, ref:'Client'},
-        party: {type:mongoose.Schema.Types.ObjectId, ref:'Party'},
-        office: {type: mongoose.Schema.Types.ObjectId, ref:'Office', required: true},
+        candidate: {type: mongoose.Schema.Types.ObjectId,ref: "Candidate"},
+        candidateID: {type: mongoose.Schema.Types.ObjectId,ref: "Client"},
+        positionID: {type: mongoose.Schema.Types.ObjectId,ref: "Office"},
+        partyID: {type: mongoose.Schema.Types.ObjectId,ref: "Party"},
         totalVotes: {type: Number, default: 0},
-        status: {type: String, enum: ['loser','winner','contesting'], default: 'contesting'},
+        status: {type: String, enum: ['winner','contesting'], default: 'contesting'},
     },
     { timestamps: true }
 )
