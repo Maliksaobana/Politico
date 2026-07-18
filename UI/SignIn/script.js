@@ -56,7 +56,14 @@ const logUser = async () => {
 
         const getToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-        window.location.href = window.location.origin + "/UI/HomeView/home.html"
+        let currentPath = window.location.pathname;
+
+        let currentDir = currentPath.substring(0, currentPath.lastIndexOf('/'));
+
+        let baseDir = currentDir.endsWith('/UI') ? currentDir.slice(0, -3) : currentDir;
+
+        window.location.href = window.location.origin + baseDir + "/HomeView/home.html";
+
 
     } catch (e) {
 
