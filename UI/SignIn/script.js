@@ -56,7 +56,7 @@ const logUser = async () => {
 
         const getToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-        window.location.pathname = "./UI/HomeView/home.html"
+        window.location.href = "/UI/HomeView/home.html"
 
     } catch (e) {
 
