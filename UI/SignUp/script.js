@@ -55,7 +55,7 @@ const signInUser = async () => {
 
         const setToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-        window.location.href = window.location.origin +  "UI/HomeView/home.html"
+        window.location.href = window.location.origin + "Politico/UI/HomeView/home.html";
 
     } catch (e) {
         await isLoading(false,loaderSpinner)

@@ -56,9 +56,7 @@ const logUser = async () => {
 
         const getToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-
-        console.log(window.location.origin)
-        // window.location.href = window.location.origin + "/HomeView/home.html";
+        window.location.href = window.location.origin + "Politico/UI/HomeView/home.html";
 
 
     } catch (e) {
