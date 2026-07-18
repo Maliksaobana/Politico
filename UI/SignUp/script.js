@@ -55,7 +55,7 @@ const signInUser = async () => {
 
         const setToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-        window.location.pathname = "/HomeView/home.html"
+        window.location.pathname = "../HomeView/home.html"
 
     } catch (e) {
         await isLoading(false,loaderSpinner)
