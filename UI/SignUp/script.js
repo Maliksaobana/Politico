@@ -1,7 +1,7 @@
 // api end point
 
 import { base_url, url_endpoints } from "../base.js"
-import { isLoading } from "../pages/baseExports.js"
+import { isLoading } from "../baseExports.js"
 
 
 const { signup:signUpAuth } = url_endpoints.user
