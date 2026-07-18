@@ -1,6 +1,6 @@
-// export const base_url = "https://politico-dmqc.onrender.com"
+export const base_url = "https://politico-dmqc.onrender.com"
 
-export const base_url = "http://localhost:3080"
+// export const base_url = "http://localhost:3080"
 
 export const url_endpoints = {
     user: {
