@@ -1,6 +1,6 @@
 import { closeMenuBtn, openMenuBtn, openMenu ,openMenuBtnIcon, closeMenu,convertToInput, convertToH_One, editTextarea,profileImg,userName,partyName,position,isLoading,logOutFunc} from "../baseExports.js"
 
-import { base_url, url_endpoints } from "../../base.js"
+import { base_url, url_endpoints } from "../base.js"
 
 
 const {getUser:GETUSER} = url_endpoints.user
