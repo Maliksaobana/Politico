@@ -1,14 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="create.css">
     <!-- font-awesome icons --->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- google fonts --->
     <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-    <title>Party</title>
+    <title>Create Office</title>
 </head>
 <body>
 
@@ -17,7 +18,7 @@
             <button class="menu_close">
                 <i class="fa-solid fa-close"></i>
             </button>
-             <header class="header_item">
+            <header class="header_item">
                 <div class="header_logo">
                     <span>NK</span>
                 </div>
@@ -30,12 +31,11 @@
             <nav>
                 <div class="list_nav">
                     <ul>
-                        <li class="politico_menu"><span><i class="fa-solid fa-home"></i></span><a href="../HomeView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Home</a></li>
-                        <li class="politico_menu"><span><i class="fa-solid fa-handshake"></i></span><a href="../CreatePosition/create.html" target="_parent" rel="no-referrer" rel="no-opener">Political Office</a></li>
-                        <li class="politico_menu active"><span><i class="fa-solid fa-landmark-flag"></i></span><a href="./index.html" target="_parent" rel="no-referrer" rel="no-opener">Party</a></li>
-                        
-                        <li class="politico_menu"><span><i class="fa-solid fa-check-to-slot"></i></span><a href="../VoteView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Vote</a></li>
-                        <li class="politico_menu"><span><i class="fa-regular fa-circle-user"></i></span><a href="../ProfileView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Profile</a></li>
+                        <li class="politico_menu"><span><i class="fa-solid fa-home"></i></span><a href="../HomeView/home.html" target="_parent" rel="no-referrer" rel="no-opener">Home</a></li>
+                        <li class="politico_menu active"><span><i class="fa-solid fa-handshake"></i></span><a href="./create.html" target="_parent" rel="no-referrer" rel="no-opener">Political Office</a></li>
+                        <li class="politico_menu"><span><i class="fa-solid fa-landmark-flag"></i></span><a href="../PartyView/party.html" target="_parent" rel="no-referrer" rel="no-opener">Party</a></li>
+                        <li class="politico_menu"><span><i class="fa-solid fa-check-to-slot"></i></span><a href="../VoteView/vote.html" target="_parent" rel="no-referrer" rel="no-opener">Vote</a></li>
+                        <li class="politico_menu"><span><i class="fa-regular fa-circle-user"></i></span><a href="../ProfileView/profile.html" target="_parent" rel="no-referrer" rel="no-opener">Profile</a></li>
                     </ul>
                 </div>
             </nav>
@@ -51,17 +51,20 @@
             <div class="wrap_head">
                 <div class="display_header">
                     <div class="display_logo">
+                        <!-- might add a logo here -->
                         <h1>Politico</h1>
                     </div>
                     <button class="menu">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
-                <div class="create_party_btn">
+                <div class="create_party_btn hasParty">
                     <div class="page_info">
                         <h2></h2>
                     </div>
-                    <button class="create_party">create party</button>
+                    <button class="create_party">create office</button>
+                    <button class="candidate">candidate</button>
+                    <button class="goBack">list of office</button>
                 </div>
             </div>
 
@@ -69,59 +72,54 @@
              <section class="create_new_party">
                 <form>
                     <div class="create_new_party_info">
-
                         <div class="create_new_party_form_info">
                             <div class="user_input">
-                                <h5>party name</h5>
+                                <h5>office name</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <input type="text" placeholder="enter party name" class="enter_party_name">
+                                        <input type="text" class="ON">
                                     </div>
                                 </div>
                             </div>
                             <div class="user_input">
-                                <h5>party Shortname</h5>
-                                <div class="edit_mode">
-                                    <div class="shortName">
-                                        <input type="text" placeholder="eg: PDP, APC, APGA" class="forShortName">
-                                    </div>
+                                <h5>office arms</h5>
+                                <div class="select_opt">
+                                    <select class="select_arm OA">
+                                        <option value="judiciary">judiciary</option>
+                                        <option value="legislative">legislative</option>
+                                        <option value="executive">executive</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="user_input">
-                                <h5>party headquaters</h5>
-                                <div class="edit_mode">
-                                    <div class="input_field">
-                                        <input type="text" placeholder="eg: rivers state" class="party_hq">
-                                    </div>
+                                <h5>office level</h5>
+                                <div class="select_opt">
+                                    <select class="select_level OL">
+                                        <option value="federal level">federal level</option>
+                                        <option value="state level">state level</option>
+                                        <option value="local level">local level</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="user_input">
-                                <h5>slogan</h5>
-                                <div class="edit_mode">
-                                    <div class="input_field">
-                                        <input type="text" placeholder="we rise and fall together" class="party_slogan">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user_input">
-                                <h5>color</h5>
-                                <div class="edit_mode">
-                                    <div class="for_colors">
-                                        <input type="text" placeholder="eg: red, #fff, rgb(255,255,120)" class="party_colors">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user_input">
-                                <h5>motto</h5>
+                                <h5>office role</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <textarea class="textarea_field" placeholder="Make Nigeria Great"></textarea>
+                                        <input type="text" class="OR">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>description</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <textarea class="textarea_field OD"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="create_new_party_save_btn">
-                            <button class="createParty"><span class="loader isnotLoading"></span>Create Party</button>
+                            <button class="createOffice"><span class="loader isnotLoading"></span> Create office</button>
                         </div>
                     </div>
                 </form>
@@ -129,136 +127,137 @@
 
             <!-- dynamic shown list of party for user and delete for admin only if so desires -->
             <section class="list_of_party">
-                
             </section>
 
 
-
-            <!-- dynamic show if user already has or joined a party not to be shown for admin -->
+            <!-- dynamic shown list of party for user and delete for admin only if so desires -->
+            <section class="list_of_contestant">
+                <div class="pageLoaderSub isnotLoading">
+                    <div class="load"></div>
+                </div>
+            </section>
+            <!-- dynamic show contesting position if politician is contesting -->
             <main class="profile_wrapper">
                 <div class="profile_info">
                     <div class="profile_form_header">
-                        <div class="profile_img">
-                            <span>pdp</span>
-                        </div>
+                            <div class="profile_img">
+                                <span>pdp</span>
+                            </div>
+                            <div class="admin_info">
+                                <h1>username</h1>
+                            </div>
                     </div>
                     <div class="profile_form_info">
                         <div class="user_input">
-                            <h5>party name</h5>
+                            <h5>office name</h5>
                             <div class="client_mode">
-                                <p class="NOP">name of party</p>
+                                <p>name of party</p>
+                            </div>
+                        </div>
+                         <div class="user_input">
+                            <h5>office role</h5>
+                            <div class="client_mode">
+                                <p>office role</p>
                             </div>
                         </div>
                         <div class="user_input">
-                            <h5>headquaters</h5>
+                            <h5>office level</h5>
                             <div class="client_mode">
-                                <p class="HQ">headquaters</p>
+                                <p>office level</p>
                             </div>
                         </div>
                         <div class="user_input">
-                            <h5>slogan</h5>
+                            <h5>office arm</h5>
                             <div class="client_mode">
-                                <p class="PS">party acronym</p>
+                                <p>office arm</p>
                             </div>
                         </div>
                         <div class="user_input">
-                            <h5>motto</h5>
+                            <h5>description</h5>
                             <div class="client_mode">
-                                <p class="PM">party motto</p>
+                                <p>description</p>
                             </div>
                         </div>
                     </div>
                     <!-- <div class="profile_save_btn">
                         <button class="leave_party_btn">
                             <i class="fa-solid fa-door-open"></i>
-                            leave party
+                            step down
                         </button>
                     </div> -->
                 </div>
             </main>
 
 
-            <!-- edit party admin only -->
-            <section class="edit_party">
+            <section class="run_for_office">
                 <form>
                     <div class="create_new_party_info">
-                        <div class="create_new_party_form_header">
-                            <div class="create_new_party_img edit_img">
-                                <span>ad</span>
-                            </div>
-                        </div>
                         <div class="create_new_party_form_info">
                             <div class="user_input">
-                                <h5>party name</h5>
+                                <h5>office name</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <input type="text" class="EDN">
+                                        <h1 class="text_field CN">NK</h1>
                                     </div>
                                 </div>
                             </div>
                             <div class="user_input">
-                                <h5>Shortname</h5>
-                                <div class="edit_mode">
-                                    <div class="shortName">
-                                        <input type="text" class="EDSN">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user_input">
-                                <h5>Headquaters</h5>
-                                <div class="edit_mode">
-                                    <div class="shortName">
-                                        <input type="text" class="EHQ">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user_input">
-                                <h5>slogan</h5>
+                                <h5>office arm</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <input type="text" class="ES">
+                                        <h1 class="text_field CA">NK</h1>
                                     </div>
                                 </div>
                             </div>
                             <div class="user_input">
-                                <h5>color</h5>
-                                <div class="edit_mode">
-                                    <div class="edit_for_colors">
-                                        <input type="text" class="EC">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="user_input">
-                                <h5>motto</h5>
+                                <h5>office level</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <textarea class="textarea_field EM"></textarea>
+                                        <h1 class="text_field CL">NK</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>office role</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field">
+                                        <h1 class="text_field CR">NK</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user_input">
+                                <h5>campaign promise</h5>
+                                <div class="edit_mode">
+                                    <div class="input_field forTextHold">
+                                        <textarea class="textarea_field CP"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="create_new_party_save_btn">
-                            <button class="edit_clicked_party"><span class="editLoader isnotLoading"></span>Save</button>
+                            <button class="contestOffice">Contest</button>
                         </div>
                     </div>
                 </form>
              </section>
 
 
-             <!-- handle page loader -->
+             <!-- error handling  -->
 
+            
+
+             <!-- for page load  -->
+             
             <div class="pageLoader isnotLoading">
                 <div class="load"></div>
             </div>
-
         </section>
 
-         <!-- error handler -->
         <div class="errModal">
             <h1><i class="fa-regular fa-circle-xmark"></i><span></span></h1>
         </div>
     </main>
     
-    <script type="module" src="script.js"></script>
+    <script type="module" src="create.js"></script>
 </body>
 </html>

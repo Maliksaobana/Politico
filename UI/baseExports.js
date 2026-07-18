@@ -1,10 +1,6 @@
 
 // works generally so use to set election timer for all pages
 
-window.addEventListener("load",()=>{
-    // timerConfirm()
-})
-
 export const isLoading = (state,LoaderElement) => {
 
     if(state === true) {

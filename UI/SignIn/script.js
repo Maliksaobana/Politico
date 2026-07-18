@@ -1,5 +1,5 @@
 import { base_url, url_endpoints } from "../base.js"
-import { isLoading } from "../pages/baseExports.js"
+import { isLoading } from "../baseExports.js"
 
 
 const { signIn:signInAuth } = url_endpoints.user
@@ -56,7 +56,7 @@ const logUser = async () => {
 
         const getToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-        window.location.pathname = "/UI/pages/HomeView/index.html"
+        window.location.pathname = "/UI/HomeView/home.html"
 
     } catch (e) {
 
