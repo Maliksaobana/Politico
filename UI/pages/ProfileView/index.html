@@ -19,13 +19,12 @@
             </button>
             <header class="header_item">
                 <div class="header_logo">
-                    <span>use</span>
+                    <span>NK</span>
                 </div>
                 <div class="header_info">
-                    <h2>username</h2>
-                    <h3>party name</h3>
-                    <h4>position</h4>
-                    <h5>number of followers</h5>
+                    <h2>NK</h2>
+                    <h3>NK:NK</h3>
+                    <h4>NK:NK</h4>
                 </div>
             </header>
             <nav>
@@ -51,7 +50,7 @@
         <section class="display_main">
             <div class="display_header">
                 <div class="display_logo">
-                    <h1>Profile</h1>
+                    <h1>Politico</h1>
                 </div>
                 <button class="menu">
                     <i class="fa-solid fa-bars"></i>
@@ -73,7 +72,7 @@
                                 <h5>username</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <h1 class="text_field">username</h1>
+                                        <h1 class="text_field IN">NK</h1>
                                     </div>
                                     <button class="edit_icon">
                                         <i class="fa-solid fa-pencil"></i>
@@ -85,7 +84,7 @@
                                 <h5>party name</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <h1 class="text_field">party name</h1>
+                                        <h1 class="text_field partyName">NK:NK</h1>
                                     </div>
                                     <button class="admin_edit_icon">
                                         <i class="fa-solid fa-pencil"></i>
@@ -97,7 +96,7 @@
                                 <h5>slogan</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <h1 class="text_field">we rise and fall together</h1>
+                                        <h1 class="text_field partySlogan">NK:NK</h1>
                                     </div>
                                     <button class="admin_edit_icon">
                                         <i class="fa-solid fa-pencil"></i>
@@ -109,17 +108,17 @@
                                 <h5>motto</h5>
                                 <div class="edit_mode">
                                     <div class="input_field">
-                                        <h1 class="text_field">motto</h1>
+                                        <h1 class="text_field partyMotto">NK:NK</h1>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="profile_save_btn">
-                            <button>save</button>
+                            <button class="save_new_update"><span class="loader isnotLoading"></span>save</button>
                         </div>
                     </div>
                 </form>
-                <div class="history isPolitician">
+                <div class="isPolitician active">
                     <div class="history_header">
                         <h4>Position Held History</h4>
                     </div>
@@ -128,25 +127,21 @@
                             <thead>
                                 <tr>
                                     <th>s/n</th>
-                                    <th>duration</th>
                                     <th>political position</th>
-                                    <th>aspirants</th>
-                                    <th>remark</th>
+                                    <th>party</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="polHistory">
                                     <td>1</td>
-                                    <td>4 years</td>
                                     <td>min of trouble</td>
-                                    <td>Mr asoba wike</td>
-                                    <td>did well</td>
+                                    <td>pdp</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="history">
+                <div class="history active">
                     <div class="history_header">
                         <h4>Vote History</h4>
                     </div>
@@ -155,16 +150,14 @@
                             <thead>
                                 <tr>
                                     <th>s/n</th>
-                                    <th>date</th>
                                     <th>political position</th>
                                     <th>aspirants</th>
                                     <th>party</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="voteHistory">
                                 <tr>
                                     <td>1</td>
-                                    <td>24/5/2026</td>
                                     <td>min of trouble</td>
                                     <td>Mr asoba wike</td>
                                     <td>PDP</td>
@@ -175,6 +168,11 @@
                 </div>
             </main>
         </section>
+
+        <!-- handle errors -->
+        <div class="errModal">
+            <h1><i class="fa-regular fa-circle-xmark"></i><span></span></h1>
+        </div>
     </main>
     
     <script type="module" src="script.js"></script>

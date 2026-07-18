@@ -3,10 +3,7 @@ const mongoose = require("mongoose")
 
 const partyPoliticalCandidates = new mongoose.Schema({
     contestingPosition: {type:mongoose.Schema.Types.ObjectId, ref:'Office'},
-    candidateID: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true},
-    satisfied: {type: Boolean, default: true},
-    petition: { type:String},
-    politicalAgenda: {type: String}
+    candidateID: {type: mongoose.Schema.Types.ObjectId, ref:'Client', required: true}
 })
 
 const partyHeldPositions = new mongoose.Schema({

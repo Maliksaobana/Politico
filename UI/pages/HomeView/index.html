@@ -16,21 +16,20 @@
             <button class="menu_close">
                 <i class="fa-solid fa-close"></i>
             </button>
-            <header class="header_item">
+             <header class="header_item">
                 <div class="header_logo">
-                    <span>use</span>
+                    <span>NK</span>
                 </div>
                 <div class="header_info">
-                    <h2>username</h2>
-                    <h3>party name</h3>
-                    <h4>position</h4>
-                    <h5>number of followers</h5>
+                    <h2>NK</h2>
+                    <h3>NK:NK</h3>
+                    <h4>NK:NK</h4>
                 </div>
             </header>
             <nav>
                 <div class="list_nav">
                     <ul>
-                        <li class="politico_menu active"><span><i class="fa-solid fa-home"></i></span><a href="../index.html" target="_parent" rel="no-referrer" rel="no-opener">Home</a></li>
+                        <li class="politico_menu active"><span><i class="fa-solid fa-home"></i></span><a href="./index.html" target="_parent" rel="no-referrer" rel="no-opener">Home</a></li>
                         <li class="politico_menu"><span><i class="fa-solid fa-handshake"></i></span><a href="../CreatePosition/create.html" target="_parent" rel="no-referrer" rel="no-opener">Political Office</a></li>
                         <li class="politico_menu"><span><i class="fa-solid fa-landmark-flag"></i></span><a href="../PartyView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Party</a></li>
                         <li class="politico_menu"><span><i class="fa-solid fa-check-to-slot"></i></span><a href="../VoteView/index.html" target="_parent" rel="no-referrer" rel="no-opener">Vote</a></li>
@@ -39,27 +38,121 @@
                 </div>
             </nav>
             <div class="sign_out">
-                    <button class="log_out">
-                        <span>
-                            <i class="fa-solid fa-door-open"></i>
-                        </span>
-                        Log out</button>
+                <button class="log_out">
+                    <span>
+                        <i class="fa-solid fa-door-open"></i>
+                    </span>
+                    Log out
+                </button>
             </div>
         </aside>
         <section class="display_main">
-            <div class="display_header">
-                <div class="display_logo">
-                    <h1>Politico</h1>
+            <div class="restructure">
+                <div class="display_header">
+                    <div class="display_logo">
+                        <h1>Politico</h1>
+                    </div>
+                    <button class="menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
-                <button class="menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
             </div>
-            <div class="main_content"></div>
-        </section>
-        <article class="news-article">
 
+            <!-- main content -->
+            <div class="main_content active">
+                <section class="display_main_content">
+                    <div class="child_one">
+                        <div class="content_header">
+                            <div class="content_logo">
+                                <h2>Number of Parties <i class="fa-solid fa-landmark-flag"></i></h2>
+                                <span></span>
+                            </div>
+                            <div class="content_main_body">
+                                <h1 class="party">NK</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="child_two">
+                        <div class="content_header">
+                            <div class="content_logo">
+                                <h2>Number of Offices <i class="fa-solid fa-handshake"></i></h2>
+                                <span></span>
+                            </div>
+                            <div class="content_main_body">
+                                <h1 class="office">NK</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="child_three">
+                        <div class="content_header">
+                            <div class="content_logo">
+                                <h2>Number of Candidates <i class="fa-solid fa-circle-user"></i></h2>
+                                <span></span>
+                            </div>
+                            <div class="content_main_body">
+                                <h1 class="candidate">NK</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="child_four">
+                        <div class="content_header">
+                            <div class="content_logo">
+                                <h2>Latest News</h2>
+                                <span></span>
+                            </div>
+                            <div class="info_block winner_block">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="child_five">
+                        <div class="content_petition_header">
+                            <div class="content_petition_logo">
+                                <h2>Petitions</h2>
+                                <span></span>
+                            </div>
+                            <div class="info_block petition_block">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- handle page loader -->
+            <div class="pageLoader isnotLoading">
+                <div class="load"></div>
+            </div>
+        </section>
+        <article class="petition_details">
+            <div class="article_header">
+                <h1>Petition details</h1>
+            </div>
+            <div class="article_body">
+                <div class="complainer_details">
+                    <h2>name: <span></span></h2>
+                    <h3>party or member of public</h3>
+                    <h4>position</h4>
+                </div>
+                <div class="title_of_petition">
+                    <h2>Reason for Petition:</h2>
+                    <span>Complain about Election/Electorate credibility</span>
+                </div>
+                <div class="complain_details">
+                    <h5>Petition:</h5>
+                    <div class="get_the_reason">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="close_btn">
+                <button class="close_petition">close</button>
+            </div>
         </article>
+
+        <!-- handle error page -->
+        <div class="errModal">
+            <h1><i class="fa-regular fa-circle-xmark"></i><span></span></h1>
+        </div>
     </main>
     <script type="module" src="../baseExports.js"></script>
     <script type="module" src="home.js"></script>

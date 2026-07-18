@@ -5,13 +5,24 @@ window.addEventListener("load",()=>{
     // timerConfirm()
 })
 
+export const isLoading = (state,LoaderElement) => {
 
+    if(state === true) {
+        LoaderElement.classList.remove("isnotLoading")
+    }else {
+        LoaderElement.classList.add("isnotLoading")
+    }
+}
 
 export const closeMenuBtn = document.querySelector('.menu_close'),
     openMenuBtn = document.querySelector('.menu'),
     openMenuBtnIcon = document.querySelector('.menu i'),
     adminUser = document.querySelector('.only_admin'),
-    dashboardMenu = document.querySelector('.dashboard_menu');
+    dashboardMenu = document.querySelector('.dashboard_menu'),
+    profileImg = document.querySelector(".header_logo span"),
+    userName = document.querySelector(".header_info h2"),
+    partyName = document.querySelector(".header_info h3"),
+    position = document.querySelector(".header_info h4");
 
 
 export const closeMenu = () => {
@@ -58,6 +69,8 @@ export const convertToH_One = (e) => {
 
         textField.textContent = edited_value
 
+        textField.setAttribute("class","userData")
+
         e.target.parentElement.previousElementSibling.appendChild(textField)
 
         e.target.setAttribute('class', 'fa-solid fa-pencil')
@@ -98,6 +111,9 @@ export const editTextarea = (e) =>{
         }
 }
 
-closeMenuBtn.addEventListener('click', closeMenu)
-
-openMenuBtn.addEventListener('click', openMenu)
+export const logOutFunc = () => {
+    window.location.href = "../../index.html"
+    localStorage.removeItem("token")
+    sessionStorage.clear()
+    window.location.replace("../../index.html");
+}

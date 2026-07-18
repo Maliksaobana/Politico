@@ -1,4 +1,5 @@
 import { base_url, url_endpoints } from "../base.js"
+import { isLoading } from "../pages/baseExports.js"
 
 
 const { signIn:signInAuth } = url_endpoints.user
@@ -6,9 +7,16 @@ const { signIn:signInAuth } = url_endpoints.user
 
 const getUserEmail = document.querySelector("[type=email]"),
     getUserPassword = document.querySelector("[type=password]"),
-    wrapper = document.querySelector('.signin_wrapper')
+    wrapper = document.querySelector('.signin_wrapper'),
+    loaderSpinner = document.querySelector(".loader"),
+    errorDivHandler = document.querySelector(".errModal"),
+    errorTextContent = document.querySelector(".errModal h1 span"),
+    logInBtn = document.querySelector(".log_in")
 
-const logInBtn = document.querySelector(".log_in")
+let timeOut = ''
+
+
+
 
 const logUser = async () => {
     const body = {
@@ -16,9 +24,11 @@ const logUser = async () => {
         password: getUserPassword.value
     }
 
+    await isLoading(true,loaderSpinner)
+
 
     try {
-        const logInUser = await fetch(`${base_url}${signInAuth}`,{
+        const response = await fetch(`${base_url}${signInAuth}`,{
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -26,76 +36,161 @@ const logUser = async () => {
             }
         })
 
-        if(!logInUser.ok) {
-            throw new Error(`${logInUser.status}: unable to login user, try agin`)
+        if(!response.ok) {
+            throw new Error(`${response.status}: unable to login user, try agin`)
+
+            await isLoading(false,loaderSpinner)
+
+            errorDivHandler.classList.add('show')
+            errorTextContent.textContent = `${response.message}`
+
+            setTimeout(()=> {
+                errorDivHandler.classList.remove("show")
+            },3000)
+
         }
 
-        const data = await logInUser.json()
+        await isLoading(false,loaderSpinner)
+
+        const data = await response.json()
 
         const getToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-        console.log(data)
+        window.location.pathname = "/UI/pages/HomeView/index.html"
+
     } catch (e) {
-        console.error(e.message)
+
+        await isLoading(false,loaderSpinner)
+                    
+        errorDivHandler.classList.add('show')
+
+        errorTextContent.textContent = e.message == "Failed to fetch" ? "You are offline" : e.message
+        
+        setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+        },3000)
     }
-
-
-    // if(dummyLogin && role === 'politician') {
-    //     window.location.pathname = "/UI/pages/political/index.html"
-    //     console.log('logged in')
-    // }else {
-    //     window.location.pathname = "/UI/pages/clients/index.html"
-    // }
-
 
 }
 
 
+
+
 logInBtn.addEventListener("click", (e) => {
     e.preventDefault()
+   
+    if(timeOut !== "") {
+        clearTimeout(timeOut)
+    }
 
-    const errModal = document.createElement('div')
-    errModal.classList.add('errModal')
-    
 
     if(getUserEmail.value.trim() === '' && getUserPassword.value.trim() === '') {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Fields must not be empty!!</h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+        errorDivHandler.classList.add("show")
+        errorTextContent.textContent = " Fill in Fields"
         getUserEmail.parentElement.classList.add('err')
         getUserPassword.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             getUserEmail.parentElement.classList.remove('err')
             getUserPassword.parentElement.classList.remove('err')
-        },5000)
+        },3000)
 
         return
 
     }else if (!getUserEmail.value.includes('@')) {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Email must include @ </h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Email must include @'
         getUserEmail.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             getUserEmail.parentElement.classList.remove('err')
+        },3000)
+
+        return
+    }else if (getUserPassword.value.trim() === '' || getUserPassword.value.length < 4) {
+        if(getUserPassword.value.trim() === '') {
+            errorDivHandler.classList.add('show')
+            errorTextContent.textContent = ' Input password'
+
+            timeOut = setTimeout(()=> {
+                errorDivHandler.classList.remove("show")
+                getUserPassword.parentElement.classList.remove('err')
+            },5000)
+            return 
+        }
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password must be greater than 3'
+        getUserPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            getUserPassword.parentElement.classList.remove('err')
         },5000)
 
         return
-    }else if (getUserPassword.value.trim() === '' || getUserPassword.value.length < 3) {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Password must be greater than 3</h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+    }else {
+        getUserEmail.parentElement.classList.add('good')
+        getUserPassword.parentElement.classList.add('good')
+    }
+    
+    logUser()
+})
+
+
+window.addEventListener("keydown", (e) => {
+    if(e.key !== "Enter") {
+        return
+    }
+
+    if(timeOut !== "") {
+        clearTimeout(timeOut)
+    }
+
+
+    if(getUserEmail.value.trim() === '' && getUserPassword.value.trim() === '') {
+        errorDivHandler.classList.add("show")
+        errorTextContent.textContent = " Fill in Fields"
+        getUserEmail.parentElement.classList.add('err')
         getUserPassword.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            getUserEmail.parentElement.classList.remove('err')
+            getUserPassword.parentElement.classList.remove('err')
+        },3000)
+
+        return
+
+    }else if (!getUserEmail.value.includes('@')) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Email must include @'
+        getUserEmail.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            getUserEmail.parentElement.classList.remove('err')
+        },3000)
+
+        return
+    }else if (getUserPassword.value.trim() === '' || getUserPassword.value.length < 4) {
+        if(getUserPassword.value.trim() === '') {
+            errorDivHandler.classList.add('show')
+            errorTextContent.textContent = ' Input password'
+
+            timeOut = setTimeout(()=> {
+                errorDivHandler.classList.remove("show")
+                getUserPassword.parentElement.classList.remove('err')
+            },5000)
+            return 
+        }
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password must be greater than 3'
+        getUserPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             getUserPassword.parentElement.classList.remove('err')
         },5000)
 

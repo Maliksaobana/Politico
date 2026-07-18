@@ -145,7 +145,7 @@ const editClientProfile = async (req,res) => {
 const getUserProfile = async (req,res) => {
     try {
         
-        const user = await User.findById(req.user.id).select('-password').populate("votedParticipatedOn.officeVotedFor","officeName -_id").populate("votedParticipatedOn.candidatedVotedFor","name party -_id").populate("party","-_id partyName hqAddress partyShortName partySlogan partyMotto partySlogan")
+        const user = await User.findById(req.user.id).select('-password').populate("votedParticipatedOn.officeVotedFor","officeName -_id").populate("votedParticipatedOn.candidatedVotedFor","name party partyShortName -_id").populate("party","-_id partyName hqAddress partyShortName partyColor partySlogan partyMotto").populate("officesHeld.office").populate("petitionBlock.onWhichParty","partyName partyShortName partyColor").populate("following.personVotedFor", "name").populate("following.partyVotedFor")  .populate("following.officeVotedFor"," -_id").populate("petitionBlock.onWhichCandidate","name -_id").populate("petitionBlock.onWhichPosition","-_id").populate("office", "officeName officeLevel officeArm officeRole -_id")
 
 
         if(!user) {

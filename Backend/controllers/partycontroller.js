@@ -16,7 +16,7 @@ const createParty = async (req,res) => {
         const partyExists = await Party.findOne({ partyName })
 
         if(partyExists) {
-            res.status(400).json({status:400,message:'party already exists'})
+            res.status(400).json({status:300,message:'party already exists'})
             throw new Error('party already exists')
         }
 
@@ -131,8 +131,7 @@ const joinParty = async (req,res) => {
 
         res.status(200).json({
             status:200,
-            body: getParty,
-            userBody: getUser
+            body: getParty
         })
         
     } catch (e) {

@@ -16,15 +16,14 @@
             <button class="menu_close">
                 <i class="fa-solid fa-close"></i>
             </button>
-            <header class="header_item">
+             <header class="header_item">
                 <div class="header_logo">
-                    <span>use</span>
+                    <span>NK</span>
                 </div>
                 <div class="header_info">
-                    <h2>username</h2>
-                    <h3>party name</h3>
-                    <h4>position</h4>
-                    <h5>number of followers</h5>
+                    <h2>NK</h2>
+                    <h3>NK:NK</h3>
+                    <h4>NK:NK</h4>
                 </div>
             </header>
             <nav>
@@ -48,50 +47,16 @@
             </div>
         </aside>
         <section class="display_main">
-            <div class="display_header">
-                <div class="display_logo">
-                    <h1>Voting</h1>
+            <div class="vote_body">
+                <div class="cast_vote">
+                    <h1>Politico</h1>
                 </div>
                 <button class="menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
             <section class="vote_wrapper">
-                <div class="vote_header">
-                    <p>“It is the duty of every citizen according to his best capacities to give validity to his convictions in political affairs.” Albert Einstein</p>
-                </div>
-                <div class="vote_body">
-                    <div class="cast_vote">
-                        <h1>cast your vote</h1>
-                        <h5>one person one vote</h5>
-                    </div>
-                    <div class="electorate_holder">
-                        <div class="vote_card">
-                            <div class="aspirants_info">
-                                <div class="party_info">
-                                    <div class="party_img">
-                                        <span>pdp</span>
-                                    </div>
-                                    <div class="aspirants_name">
-                                        <h3><a href="">name of politician</a></h3>
-                                        <h4><a href="">party name</a></h4>
-                                        <p><span>current</span> • vote</p>
-                                    </div>
-                                    <div class="position">
-                                        <h5>political position</h5>
-                                    </div>
-                                </div>
-                                <div class="political_proposition">
-                                    <h2>i want to cause trouble without ceasing or end in sight</h2>
-                                </div>
-                            </div>
-                            <div class="call_to_action">
-                                <button class="vote_btn">vote</button>
-                                <button class="petition_btn">petition</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </section>
 
 
@@ -101,22 +66,16 @@
                 <div class="vote_header">
                     <p>“It is the duty of every citizen according to his best capacities to give validity to his convictions in political affairs.” Albert Einstein</p>
                 </div>
-                <div class="vote_body">
-                    <div class="cast_vote">
-                        <h1>Petition</h1>
-                    </div>
-                </div>
                 <div class="feed_body">
                     <form>
                         <div class="profile_info">
                             <div class="profile_form_header">
-                                <div class="profile_img">
+                                <div class="profile_img PIMG">
                                     <span>pdp</span>
                                 </div>
-                                <div class="admin_info">
+                                <div class="admin_info PDETAILS">
                                     <h1>username</h1>
-                                    <h2>position</h3>
-                                    <h3>followers</h3>
+                                    <h2>party long name</h2>
                                 </div>
                             </div>
                             <div class="profile_form_info">
@@ -124,24 +83,31 @@
                                     <h5>topic</h5>
                                     <div class="edit_mode">
                                         <div class="input_field">
-                                            <input type="text">
+                                            <input type="text" class="petitionTopic" value="Complain about credibility of Election" disabled>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="user_input">
-                                    <h5>location</h5>
+                                    <h5>Candidate</h5>
                                     <div class="edit_mode">
                                         <div class="input_field">
-                                            <input type="text">
+                                            <input type="text" class="petitionLocation"  placeholder="Enter your location" disabled />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="user_input">
-                                    <h5>tags</h5>
+                                    <h5>Party</h5>
                                     <div class="edit_mode">
                                         <div class="input_field">
-                                            <input type="text" />
-                                            <p>seperate tags by comma (,)</p>
+                                            <input type="text" class="petitionParty"  placeholder="Enter your location" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user_input">
+                                    <h5>office</h5>
+                                    <div class="edit_mode">
+                                        <div class="input_field">
+                                            <input type="text" class="petitionOffice" disabled />
                                         </div>
                                     </div>
                                 </div>
@@ -149,20 +115,29 @@
                                     <h5>message</h5>
                                     <div class="edit_mode">
                                         <div class="input_field">
-                                            <textarea class="textarea_field"></textarea>
+                                            <textarea class="textarea_field MP"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="profile_save_btn">
-                                <button>submit</button>
+                                <button class="feed_save_btn"><span class="loader isnotLoading"></span>submit</button>
                             </div>
                         </div>
-                </form>
+                    </form>
                 </div>
             </section>
 
+            <!-- page loader -->
+
+            <div class="pageLoader isnotLoading">
+                <div class="load"></div>
+            </div>
+
         </section>
+        <div class="errModal">
+            <h1><i class="fa-regular fa-circle-xmark"></i><span></span></h1>
+        </div>
     </main>
     
     <script type="module" src="script.js"></script>
