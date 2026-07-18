@@ -1,24 +1,30 @@
 import { base_url,url_endpoints } from "../base.js"
-
+import {isLoading} from "../pages/baseExports.js"
 
 const {password:forgetPasswordUrl} = url_endpoints.user
 
 const token = JSON.parse(localStorage.getItem('token'))
 
-console.log(token)
 
 
 
 const confirmNewPassword = document.querySelector(".confirm"),
     createNewPassword = document.querySelector("[type=password]"),
-    wrapper = document.querySelector('.forget_wrapper')
+    wrapper = document.querySelector('.forget_wrapper'),
+    confirmPasswordBtn = document.querySelector(".confirm_btn"),
+    errorDivHandler = document.querySelector(".errModal"),
+    loaderSpinner = document.querySelector(".loader"),
+    errorTextContent = document.querySelector(".errModal h1 span")
 
-const confirmPasswordBtn = document.querySelector(".confirm_btn")
+let timeOut = ""
+
 
 const editUserPassword = async () => {
     const body = {
         password: confirmNewPassword.value
     }
+
+    await isLoading(true,loaderSpinner)
 
     try {
         const confirmChangeOfPassword = await fetch(`${base_url}${forgetPasswordUrl}`,{
@@ -31,14 +37,34 @@ const editUserPassword = async () => {
         })
 
         if(!confirmChangeOfPassword.ok) {
-            return `${confirmChangeOfPassword.status}: ${confirmChangeOfPassword.json}`
+            await isLoading(false,loaderSpinner)
+                        
+            errorDivHandler.classList.add('show')
+            errorTextContent.textContent = `${response.message}`
+            
+            setTimeout(()=> {
+                errorDivHandler.classList.remove("show")
+            },3000)
+            
+            throw new Error(`${response.status}: unable to register user try agin`)
         }
 
-        const data = await confirmChangeOfPassword.json()
+        await isLoading(false,loaderSpinner)
 
-        console.log(data)
+        window.location.pathname = "/UI/SIgnIn/signin.html"
+
+        sessionStorage.clear()
+
     } catch (e) {
-        console.error(e.message)
+        await isLoading(false,loaderSpinner)
+                    
+        errorDivHandler.classList.add('show')
+
+        errorTextContent.textContent = e.message == "Failed to fetch" ? " You are offline" : e.message
+
+        setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+        },3000)
     }
 }
 
@@ -46,37 +72,98 @@ const editUserPassword = async () => {
 confirmPasswordBtn.addEventListener("click", (e) => {
     e.preventDefault()
 
-    const errModal = document.createElement('div')
-    errModal.classList.add('errModal')
+    if(timeOut !== "") {
+        clearTimeout(timeOut)
+    }
     
 
-    if(createNewPassword.value.trim() === '' || createNewPassword.value.length < 3) {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Create new password and must not be less than 3</h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+    if(createNewPassword.value.trim() === '') {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password is blank'
         createNewPassword.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             createNewPassword.parentElement.classList.remove('err')
-        },5000)
+        },3000)
+
+        return
+
+    }else if(createNewPassword.value.length < 3) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password must be greater than 3'
+        createNewPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            createNewPassword.parentElement.classList.remove('err')
+        },3000)
 
         return
 
     }else if (createNewPassword.value !== confirmNewPassword.value) {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Password not the same</h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Passwords do not match.'
         createNewPassword.parentElement.classList.add('err')
         confirmNewPassword.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             createNewPassword.parentElement.classList.remove('err')
             confirmNewPassword.parentElement.classList.remove('err')
-        },5000)
+        },3000)
+
+        return
+    }else {
+        createNewPassword.parentElement.classList.add('good')
+        confirmNewPassword.parentElement.classList.add('good')
+    }
+    
+    editUserPassword()
+})
+
+window.addEventListener("keydown", (e) => {
+    if(e.key !== "Enter") return
+
+    if(timeOut !== "") {
+        clearTimeout(timeOut)
+    }
+    
+    if(createNewPassword.value.trim() === '') {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password is blank'
+        createNewPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            createNewPassword.parentElement.classList.remove('err')
+        },3000)
+
+        return
+
+    }else if(createNewPassword.value.length < 3) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password must be greater than 3'
+        createNewPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            createNewPassword.parentElement.classList.remove('err')
+        },3000)
+
+        return
+
+    }else if (createNewPassword.value !== confirmNewPassword.value) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Passwords do not match.'
+        createNewPassword.parentElement.classList.add('err')
+        confirmNewPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            createNewPassword.parentElement.classList.remove('err')
+            confirmNewPassword.parentElement.classList.remove('err')
+        },3000)
 
         return
     }else {

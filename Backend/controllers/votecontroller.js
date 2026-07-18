@@ -15,11 +15,24 @@ const User = require("../models/user")
 
 const getAllParticipates = async (req,res) => {
     try {
-        const allCandidates = await Vote.find().populate("candidate","campaignPromise").populate("positionID","-isVancant -currentOccupant -officeContestantStatus -currentParty -createdAt -updatedAt").populate("candidateID","-password -votedParticipatedOn -hasAParty -email -createdAt -updatedAt -party").populate("partyID","partyName")
+        const allCandidates = await Vote.find().populate("candidate","campaignPromise").populate("positionID","-_id").populate("candidateID","-password -votedParticipatedOn -hasAParty -email -createdAt -updatedAt -party").populate("partyID","partyName partyShortName")
 
         res.status(200).json({
             status:200,
             body: allCandidates
+        })
+    } catch (e) {
+        res.status(400).json({message: e.message})
+    }
+}
+
+const getParticipant = async (req,res) => {
+    try {
+        const candidates = await Vote.findById(req.params.id).populate("candidate","campaignPromise").populate("positionID","-_id").populate("candidateID","-password -votedParticipatedOn -hasAParty -email -createdAt -updatedAt -party").populate("partyID","partyName partyShortName")
+
+        res.status(200).json({
+            status:200,
+            body: candidates
         })
     } catch (e) {
         res.status(400).json({message: e.message})
@@ -39,16 +52,33 @@ const voteCandidate = async (req,res) => {
             throw new Error("candidate not found")
         }
 
+        const hasUserVotedBefore = userThatVoted.following.some(item => item.whoVotedFor.toString() === candidateToVoteFor.id.toString())
+
+        if(hasUserVotedBefore) {
+            res.status(400).json({message: " You have already voted for the candidate"})
+            throw new Error("no two times voting")
+        }
+
+        const iVotedFor = {
+            whoVotedFor: candidateToVoteFor.id,
+            personVotedFor: candidateToVoteFor.candidateID,
+            partyVotedFor: candidateToVoteFor.partyID,
+            officeVotedFor: candidateToVoteFor.positionID,
+            hasVoted: true
+        }
         candidateToVoteFor.totalVotes = candidateToVoteFor.totalVotes + Number(vote)
+        userThatVoted.following.push(iVotedFor)
 
         await candidateToVoteFor.save()
 
         const passQueryForParticipation = {
             officeVotedFor: candidateToVoteFor.positionID,
-            candidatedVotedFor: candidateToVoteFor.candidateID
+            candidatedVotedFor: candidateToVoteFor.candidateID,
+            hasVoted: true,
+            voteRef: candidateToVoteFor._id
         }
 
-        userThatVoted.votedParticipatedOn = passQueryForParticipation
+        userThatVoted.votedParticipatedOn.push(passQueryForParticipation)
 
         await userThatVoted.save()
 
@@ -57,11 +87,10 @@ const voteCandidate = async (req,res) => {
             body: candidateToVoteFor
         })
 
-
     } catch (e) {
         res.status(400).json({message: e.message})
     }
 }
 
 
-module.exports = {voteCandidate,getAllParticipates}
+module.exports = {voteCandidate,getAllParticipates,getParticipant}

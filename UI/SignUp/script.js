@@ -1,6 +1,7 @@
 // api end point
 
 import { base_url, url_endpoints } from "../base.js"
+import { isLoading } from "../pages/baseExports.js"
 
 
 const { signup:signUpAuth } = url_endpoints.user
@@ -12,20 +13,27 @@ const signUpBtn = document.querySelector(".sign_up"),
     postUserPassword = document.querySelector('[type=password]'),
     postUserEmail = document.querySelector('[type=email]'),
     postUserName = document.querySelector('[type=text]'),
-    postAdminToken = document.querySelector('.admin_token')
+    postAdminToken = document.querySelector('.admin_token'),
+    loaderSpinner = document.querySelector(".loader"),
+    errorDivHandler = document.querySelector(".errModal"),
+    errorTextContent = document.querySelector(".errModal h1 span")
 
+
+let timeOut = ''
 
 const signInUser = async () => {
     const body = {
         name: postUserName.value,
         email: postUserEmail.value,
         password: postUserConfirmedPassword.value,
-        token: postAdminToken.value,
+        adminToken: postAdminToken.value,
     }
+
+    await isLoading(true,loaderSpinner)
 
     
     try {
-        const responce = await fetch(`${base_url}${signUpAuth}`,{
+        const response = await fetch(`${base_url}${signUpAuth}`,{
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -33,27 +41,32 @@ const signInUser = async () => {
             }
         })
 
-        if(!responce.ok) {
-            throw new Error(`${responce.status}: unable to register user try agin`)
+        if(!response.ok) {
+            await isLoading(false,loaderSpinner)
+            const data = await response.json()
 
-            return
+            throw new Error(data.message)
+
         }
 
-        const data = await responce.json()
+        await isLoading(false,loaderSpinner)
+        
+        const data = await response.json()
 
         const setToken = localStorage.setItem('token',JSON.stringify(data.body.token))
 
-
+        window.location.pathname = "/UI/pages/HomeView/index.html"
 
     } catch (e) {
-        console.error(e.message)
+        await isLoading(false,loaderSpinner)
+            
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = e.message == "Failed to fetch" ? " You are offline" : " " + e.message
+
+        setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+        },3000)
     }
-
-
-    // if(dummyLogin) {
-    //     window.location.pathname = "/UI/pages/clients/index.html"
-    //     console.log('logged in')
-    // }
 
 }
 
@@ -61,73 +74,141 @@ const signInUser = async () => {
 signUpBtn.addEventListener("click", (e) => {
     e.preventDefault()
 
-    const errModal = document.createElement('div')
-    errModal.classList.add('errModal')
+    if(timeOut !== "") {
+        clearTimeout(timeOut)
+    }
     
 
     if(postUserEmail.value.trim() === '' && postUserPassword.value.trim() === '' && postUserName.value.trim() === '') {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Fields must not be empty!!</h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Fields must not be empty!!'
         postUserEmail.parentElement.classList.add('err')
         postUserName.parentElement.classList.add('err')
         postUserPassword.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             postUserEmail.parentElement.classList.remove('err')
             postUserName.parentElement.classList.remove('err')
             postUserPassword.parentElement.classList.remove('err')
-        },5000)
+        },3000)
 
         return
 
     }else if (!postUserEmail.value.includes('@')) {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Email must include @ </h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Email must include @'
         postUserEmail.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             postUserEmail.parentElement.classList.remove('err')
-        },5000)
+        },3000)
 
         return
-    }else if (postUserPassword.value.trim() === '' || postUserPassword.value.length < 3) {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Password must be greater than 3</h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+    }else if (postUserPassword.value.trim() === '' || postUserPassword.value.length <= 3) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password must be greater than 3'
         postUserPassword.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             postUserPassword.parentElement.classList.remove('err')
-        },5000)
+        },3000)
 
         return
     }else if (postUserPassword.value !== postUserConfirmedPassword.value) {
-        errModal.classList.add('show')
-        errModal.innerHTML = '<h1>Password not the same</h1> n\
-            <span></span>'
-        wrapper.append(errModal)
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password not the same'
         postUserPassword.parentElement.classList.add('err')
         postUserConfirmedPassword.parentElement.classList.add('err')
 
-        setTimeout(()=> {
-            errModal.remove()
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
             postUserPassword.parentElement.classList.remove('err')
             postUserConfirmedPassword.parentElement.classList.remove('err')
-        },5000)
+        },3000)
 
         return
     }else {
         postUserEmail.parentElement.classList.add('good')
         postUserPassword.parentElement.classList.add('good')
         postUserName.parentElement.classList.add('good')
+        postAdminToken.parentElement.classList.add('good')
+        postUserConfirmedPassword.parentElement.classList.add('good')
+    }
+    
+    signInUser()
+
+    // console.log(postAdminToken.value)
+})
+
+window.addEventListener("keydown", (e) => {
+    if(e.key !== "Enter") {
+        return
+    }
+
+    if(timeOut !== "") {
+        clearTimeout(timeOut)
+    }
+    
+
+    if(postUserEmail.value.trim() === '' && postUserPassword.value.trim() === '' && postUserName.value.trim() === '') {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Fields must not be empty!!'
+        postUserEmail.parentElement.classList.add('err')
+        postUserName.parentElement.classList.add('err')
+        postUserPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            postUserEmail.parentElement.classList.remove('err')
+            postUserName.parentElement.classList.remove('err')
+            postUserPassword.parentElement.classList.remove('err')
+        },3000)
+
+        return
+
+    }else if (!postUserEmail.value.includes('@')) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Email must include @'
+        postUserEmail.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            postUserEmail.parentElement.classList.remove('err')
+        },3000)
+
+        return
+    }else if (postUserPassword.value.trim() === '' || postUserPassword.value.length <= 3) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password must be greater than 3'
+        postUserPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            postUserPassword.parentElement.classList.remove('err')
+        },3000)
+
+        return
+    }else if (postUserPassword.value !== postUserConfirmedPassword.value) {
+        errorDivHandler.classList.add('show')
+        errorTextContent.textContent = ' Password not the same'
+        postUserPassword.parentElement.classList.add('err')
+        postUserConfirmedPassword.parentElement.classList.add('err')
+
+        timeOut = setTimeout(()=> {
+            errorDivHandler.classList.remove("show")
+            postUserPassword.parentElement.classList.remove('err')
+            postUserConfirmedPassword.parentElement.classList.remove('err')
+        },3000)
+
+        return
+    }else {
+        postUserEmail.parentElement.classList.add('good')
+        postUserPassword.parentElement.classList.add('good')
+        postUserName.parentElement.classList.add('good')
+        postAdminToken.parentElement.classList.add('good')
         postUserConfirmedPassword.parentElement.classList.add('good')
     }
     

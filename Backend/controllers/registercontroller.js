@@ -8,7 +8,7 @@ const vote = require("../models/vote")
 const getAllCandidate = async (req,res) => {
     try {
         
-        const allCandidate = await candidate.find().populate("positionID","-isVancant -currentOccupant -officeContestantStatus -currentParty").populate("candidateId","-password -votedParticipatedOn -hasAParty -email -party").populate("party","partyName")
+        const allCandidate = await candidate.find().populate("positionID","-isVancant -currentOccupant -officeContestantStatus -currentParty").populate("candidateId","-password -votedParticipatedOn -hasAParty -email -party").populate("party","partyName partyShortName")
 
         if(allCandidate.length < 0) {
             res.status(400).json({status:400,message:"no candidate found"})
@@ -41,7 +41,7 @@ const runForOffice = async(req,res) => {
         }
 
         if(!getContestantId || getContestantId.hasAParty === false) {
-            res.status(400).json({status:400,message:"user must be a part of a political party"})
+            res.status(400).json({status:400,message:" User must be a part of a political party"})
             throw new Error("can't run for party")
         }
 
@@ -53,6 +53,9 @@ const runForOffice = async(req,res) => {
         })
 
         getContestantId.role = "politician"
+        getContestantId.hasSubmittedApplication = true
+        getContestantId.office = getOfficeParam.id
+        getContestantId.campaignPromise = newContestant.campaignPromise
 
         await getContestantId.save()
 
@@ -73,6 +76,7 @@ const registerContestant = async (req,res) => {
     try {
 
         const isCandidate = await candidate.findById(req.params.id)
+        const updateCandidate = await User.findById(isCandidate.candidateId)
 
         const { statusOfCandidate } = req.body
 
@@ -80,6 +84,8 @@ const registerContestant = async (req,res) => {
 
         if( statusOfCandidate === 'accept') {
             isAccepted = true
+        }else {
+            isAccepted = false
         }
 
         isCandidate.isAccepted = isAccepted
@@ -96,8 +102,20 @@ const registerContestant = async (req,res) => {
                 status:'contesting',
             })
 
+            updateCandidate.isApproved = true
+
+            await updateCandidate.save()
+
         }else {
-            await isCandidate.save()
+
+            updateCandidate.hasSubmittedApplication = false
+            updateCandidate.campaignPromise = null
+            updateCandidate.office = null
+
+            await updateCandidate.save()
+
+
+            await candidate.deleteOne(isCandidate)
         }
 
         res.status(200).json({

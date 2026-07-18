@@ -27,22 +27,14 @@ const createOffice = async (req,res) => {
         let arm = 'legislative'
         let level = "local level"
 
-        if(officeArm === '') {
-            officeArm = arm
-        }
-
-        if(officeLevel === '') {
-            officeLevel =  level 
-        }
-
         if(findIfOfficeExist && findIfOfficeExist.officeLevel === officeLevel) {
             res.status(400).json({status:400,message:'no same office can exist on the same level'})
             throw new Error("review office level")
         }
 
         const newOffice = await Office.create({
-            officeArm: arm,
-            officeLevel: level,
+            officeArm: officeArm ?? arm,
+            officeLevel: officeLevel ?? level,
             officeDescription,
             officeName,
             officeRole
@@ -66,7 +58,7 @@ const createOffice = async (req,res) => {
 
 const getAllPoliticalOffice = async (req,res) => {
     try {
-        const getOffices = await Office.find()
+        const getOffices = await Office.find().populate("currentParty")
 
         if(getOffices.length < 0 || !getOffices) {
             res.status(400).json({status:400,message:"no office created"})

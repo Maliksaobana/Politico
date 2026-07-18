@@ -46,6 +46,9 @@ body{
     width: 100dvw;
     min-height: 100dvh;
     overflow: hidden;
+    background: #2C2C2C;
+    color: #E0DBDB;
+    position: relative;
 }
 
 
@@ -55,7 +58,7 @@ body{
 
 .dash_wrapper {
     display: grid;
-    grid-template-columns: 380px 1fr 320px;
+    grid-template-columns: 360px 1fr;
     height: 100dvh;
     width: 100%;
     position: relative;
@@ -63,12 +66,12 @@ body{
 
 
 .dashboard_menu {
-    background: rgba(250,250,250, .5);
-    backdrop-filter: blur(10px);
-    padding: var(--padding-primary);
+    background: rgba(255,255,255,.2);
+    backdrop-filter: blur(8px);
+    padding: var(--padding-primary) .8rem;
     display: flex;
     flex-flow: column nowrap;
-    border-right: 1px solid #ccc;
+    transition: all .5s ease;
     position: relative;
 }
 
@@ -76,8 +79,7 @@ body{
     left: 0;
 }
 
-.menu_close,
-.menu {
+.menu_close {
     display: none;
     width: fit-content;
     height: fit-content;
@@ -85,6 +87,15 @@ body{
     border: none;
     background: none;   
     align-self: end;
+}
+
+.menu {
+    display: none;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    border: none;
+    background: none;   
 }
 
 .menu_close i,
@@ -96,8 +107,7 @@ body{
     align-items: center;
     justify-content: center;
     transition: opacity .5s, transform .5s;
-
-    
+    color: #E0DBDB;    
 }
 .menu.closeTab {
     display: none;
@@ -128,8 +138,11 @@ body{
 .header_item .header_logo {
     width: 120px;
     height: 120px;
-    overflow: hidden;
+    border: 2px solid var(--color-colorFour);
     border-radius: 50%;
+    padding: .2rem;
+    overflow: hidden;
+
 
     span {
         width: 100%;
@@ -138,10 +151,11 @@ body{
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         color: #fff;
-        background: red;
+        background: var(--color-colorThree);
         text-transform: uppercase;
+        border-radius: 50%;
     }
 }
 
@@ -152,15 +166,17 @@ body{
     align-items: center;
     gap: .1rem;
 
+    h2 {
+        font-size: 15px;
+        text-transform: capitalize;
+    }
     h3 {
         font-size: 15px;
     }
     h4 {
         font-size: 15px;
-    }
-    h5 {
-        font-size: 15px;
         font-weight: normal;
+        text-transform: capitalize;
     }
 }
 
@@ -232,24 +248,31 @@ body{
 }
 
 .display_main::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;    
 }
 
-.display_main::-webkit-scrollbar-thumb {
-    border-radius: 50px;
-    cursor: grab;
-    background: var(--color-colorThree);
-}
+
 .display_main::-webkit-scrollbar-track {
-    background: var(--color-colorFour);
+    border-radius: 8px;
+}
+
+.display_main::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background: rgba(255,255,255,.6);
+}
+.display_main::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,.6);
 }
 
 .display_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 8px;
     width: 100%;
+    box-shadow: rgba(5,5,5,1) 0 2px 4px;
+    padding-bottom: .5rem;
 }
 
 .news-article {
@@ -337,20 +360,26 @@ body{
 }
 .profile_form_header {
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .profile_form_header .profile_img {
     width: 200px;
-    height: 180px;
+    height: 200px;
     overflow: hidden;
-    border-radius: 8px;
+    padding: .3rem;
+    border: 2px solid var(--color-colorFour);
+    border-radius: 50%;
 
     span {
         width: 100%;
         height: 100%;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: red;
+        background: var(--color-colorThree);
         font-size: 1.3rem;
         font-weight: bold;
         text-transform: uppercase;
@@ -449,43 +478,51 @@ body{
     justify-content: center;
     align-items: center;
     margin-block: 1rem;
+}
 
-    button {
-        width: 100%;
-        padding: .8rem;
-        max-width: 300px;
-        font-weight: bold;
-        font-size: 1rem;
-        text-transform: capitalize;
-        border-radius: 50px;
-        border: none;
-        outline: none;
-        background: var(--color-colorFour);
-        color: var(--color-colorThree);
-        cursor: pointer;
+.save_new_update {
+    width: 100%;
+    padding: .8rem;
+    max-width: 300px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: capitalize;
+    border-radius: 50px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    background: var(--color-colorFour);
+    color: var(--color-colorThree);
+    cursor: pointer;
 
-        &:hover {
-            outline: 1px solid var(--color-colorFour);
-            outline-offset: 2px;
-        }
+    &:hover {
+        outline: 1px solid var(--color-colorFour);
+        outline-offset: 2px;
     }
 }
 
-.history {
+.history,
+.isPolitician {
     display: flex;
     flex-flow: column nowrap;
     margin-top: 1rem;
+    
 }
-.history.isPolitician {
+.isPolitician.active,
+.history.active {
     display: none;
 }
 
-.history .history_header {
+.history .history_header,
+.isPolitician .history_header {
     margin-bottom: 1rem;
     border-bottom: 1px solid #ccc;
     padding-bottom: .4rem;
 }
-.history .history_table table {
+.history .history_table table,
+.isPolitician .history_table table {
     width: 100%;
 }
 
@@ -511,4 +548,92 @@ tbody tr td {
 .admin_edit_icon.isAdmin,
 .area_icon.isAdmin {
     display: block;
+}
+
+
+.loader {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-right: .5rem;
+}
+.loader.isnotLoading {
+    display: none;
+}
+
+.loader::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: loaderSpin .6s linear infinite;
+}
+
+@keyframes loaderSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.errModal {
+    border-radius: 8px;
+    padding: 8px 10px;
+    width: 100%;
+    max-width: 360px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgba(255,255,255,.2), rgba(255,255,255,.2));
+    backdrop-filter: blur(8px);
+    position: absolute;
+    top: 16px;
+    right: -999px;
+    box-shadow: rgba(0,0,0,.2) 0 1px 8px;
+    overflow: hidden;
+    transition: all 1s;
+
+    h1 {
+        font-size: 16px;
+        color: rgba(255,0,0,1);
+        font-weight: 600;   
+        
+        &.success {
+            color: rgba(0,255,0,1);
+        }
+    }
+}
+
+
+.errModal.show {
+    right: 24px;
+    transition: all 1s;
+}
+
+@media (max-width: 720px) {
+    .create_new_party_form_info .user_input:last-child .edit_mode .input_field .textarea_field {
+        height: 180px;
+    }
+    .errModal.show {
+        right: 0;
+        transition: all 1s;
+    }
+    
+}
+
+.save_new_update[disabled] {
+    background: rgba(12,39,37,.5);
+    cursor: not-allowed;
+
+    &:hover {
+        outline: none;
+    }
 }
