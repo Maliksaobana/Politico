@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Method</th>
+                <th>Api Routes</th>
+                <th>Api function</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>21</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/auth/profile/edit">/api/v1/auth/profile/edit</a></td>
+                <td>Use to Update user Profile</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/vote/:id">/api/v1/vote/:id</a></td>
+                <td>Vote for political participant of choice</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/auth/forgetpassword">/api/v1/auth/forgetpassword</a></td>
+                <td>Update a user Password</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/winner/:id">/api/v1/winner/:id</a></td>
+                <td>Declare a Political participant winner</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/office/register/:id">/api/v1/office/register/:id</a></td>
+                <td>Approve candidate interested in running for office</td>
+            </tr>
+            <tr>
+                <td>26</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/petition/:id">/api/v1/petition/:id</a></td>
+                <td>Edit petition detail made by a particular user, admin only</td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/party/partylist/join/:id">/api/v1/party/partylist</a></td>
+                <td>Join a particular political party</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/party/editparty/:id">/api/v1/party/editparty/:id</a></td>
+                <td>Edit a Particular political party</td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td>PATCH</td>
+                <td><a href="/api/v1/office/officelist/edit/:id">/api/v1/officelist/edit/:id</a></td>
+                <td>Edit a partcular political office, admin only</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>DELETE</td>
+                <td><a href="/api/v1/office/officelist/:id">/api/v1/office/officelist/:id</a></td>
+                <td>Delete a particular political office</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>DELETE</td>
+                <td><a href="/api/v1/party/deleteparty/:id">/api/v1/party/deleteparty/:id</a></td>
+                <td>Delete a particular Party</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>PATCH</td>
+                <td><a href="">/api/v1</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>PATCH</td>
+                <td><a href="">/api/v1</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>PATCH</td>
+                <td><a href="">/api/v1</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>PATCH</td>
+                <td><a href="">/api/v1</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>PATCH</td>
+                <td><a href="">/api/v1</a></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+app.use('/api/v1/auth', authroute) // use route for authentication
+app.use('/api/v1/party', partyroute) // use route for party data
+app.use('/api/v1/office',officeroute) // use route for office data
+app.use('/api/v1/office/register',officeRegisterRoute) // use route for office candidate registeration
+app.use('/api/v1/vote',voteFair) // use route for voting in election
+app.use('/api/v1/petition',petition) // use route for making petition in election
+app.use('/api/v1/winner',winner)
