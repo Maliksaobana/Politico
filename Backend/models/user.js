@@ -23,6 +23,7 @@ const participation = new mongoose.Schema({
     voteRef: {type: mongoose.Schema.Types.ObjectId,ref:"Vote"},
     officeVotedFor: {type: mongoose.Schema.Types.ObjectId,ref:"Office"},
     candidatedVotedFor: {type: mongoose.Schema.Types.ObjectId, ref: "Client"},
+    partyVotedFor: {type: mongoose.Schema.Types.ObjectId, ref: "Party"},
     hasVoted: {type: Boolean, default: false}
 })
 
