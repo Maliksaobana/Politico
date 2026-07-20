@@ -108,8 +108,8 @@ export const editTextarea = (e) =>{
 }
 
 export const logOutFunc = () => {
-    window.location.href = "../../index.html"
+    window.location.href = "../index.html"
     localStorage.removeItem("token")
     sessionStorage.clear()
-    window.location.replace("../../index.html");
+    window.location.replace("../index.html");
 }

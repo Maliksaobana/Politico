@@ -84,7 +84,7 @@ const getUser = async () => {
         logInPartySlogan.textContent = data.body.party !== null ? data.body.party.partySlogan : "NK:NK" 
         logInPartyMotto.textContent = data.body.party !== null ? data.body.party.partyMotto : "NK:NK"
 
-        /* data.body.votedParticipatedOn.forEach((item,i) => {
+        data.body.votedParticipatedOn.forEach((item,i) => {
             const newTableRow = document.createElement("tr"),
                 SN = document.createElement("td"),
                 politicalPosition = document.createElement("td"),
@@ -95,12 +95,12 @@ const getUser = async () => {
             SN.textContent = i + 1
             politicalPosition.textContent = item.officeVotedFor.officeName
             aspirant.textContent = item.candidatedVotedFor.name
-            party.textContent = item.candidatedVotedFor.partyShortName
+            party.textContent = item.partyVotedFor.partyShortName
 
-
-            newTableRow.append(SN,votedDate,politicalPosition,aspirant,party)
+            newTableRow.append(SN,politicalPosition,aspirant,party)
             logInVoteHistory.append(newTableRow)
-        }) */
+        }) 
+
 
         if(data.body.role !== "politician") {
             logInUserIsPolitician.classList.add("active")
@@ -112,16 +112,14 @@ const getUser = async () => {
         data.body.officesHeld.forEach((item,i) => {
             const newTableRow = document.createElement("tr"),
                 S_N = document.createElement("td"),
-                electedPosition = document.createElement("td"),
-                party = document.createElement("td")
+                electedPosition = document.createElement("td")
 
             
             SN.textContent = i + 1
-            electedPosition.textContent = '20/12/2025'
-            party.textContent = item.officeVotedFor.officeName
+            electedPosition.textContent = item.officeVotedFor.officeName
 
 
-            newTableRow.append(SN,votedDate,politicalPosition,aspirant,party)
+            newTableRow.append(SN,electedPosition)
             logInPoliticalHistory.append(newTableRow)
         })
 
